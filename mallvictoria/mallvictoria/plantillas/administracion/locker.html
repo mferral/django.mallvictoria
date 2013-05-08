@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+<head>
+{% include "base/head.html" %}  	
+<style>
+	form.custom div.custom.dropdown ul {
+	overflow-y: auto;
+	max-height: 200px;
+	min-width: 95%;
+	}
+	.div_imagen{
+		height: 600px;
+		background: black;
+		background-image: url({{STATIC_URL}}img/image.png);
+		background-repeat: no-repeat;	
+		background-position: center;
+		padding: 15px;
+		margin-bottom: 10px;
+	}
+	#nombre_usuario{
+		display: block;
+		font-size: 14px;
+		margin: 0 0 12px 0;
+		padding: 6px;
+		height: 32px;
+		width: 100%;		
+	}
+</style>
+</head>
+<body>
+
+{% include "base/frmregistro.html" %}	
+
+{% include "base/navbar.html" %}	
+	<input type="hidden" id="token" value="{{ csrf_token }}">
+	<div id="container">
+		{% include "base/header.html" %}	
+
+		<section id="wrapper" class="row wrap">
+		<div class="twelve mobile-four columns">
+			<h1>Locker {{idlocker}}</h1>																			
+		<form class="custom" enctype="multipart/form-data" action="" method="post">{% csrf_token %}
+			<fieldset>					
+					<label for="user">Usuario:</label>
+					<span id="nombre_usuario">Nombre Usuario</span>
+					<input type="hidden" name="iduser" id="iduser">
+					<label for="titulo">Articulo:</label>
+					<input type="text"  id="titulo" placeholder="Nombre del Articulo (maximo 40 caracteres)">
+					<label for="descripcion">Descripcion:</label>
+					<textarea name="descripcion" id="descripcion" cols="30" rows="3"></textarea>
+					<div class="row">
+						<div class="four columns">
+							<label for="costo">Costo:</label>
+							<div class="row">
+							  <div class="twelve columns">
+							    <div class="row collapse">
+							      <div class="two columns">
+							        <span style="height: 28px;line-height: 25px;" class="prefix">$</span>
+							      </div>
+							      <div class="ten columns">
+							        <input type="text" id="costo" name="costo" placeholder="0.00" style="height: 28px;" />
+							      </div>
+							    </div>
+							</div>
+							</div>
+						</div>
+						<div class="four columns">
+								<label for="tipo">Tipo:</label>
+								<select style="display:none;" id="tipo">
+								    <option value="-1" selected>Seleccione un Tipo</option>
+								    {% for tipo in tipos %}
+								    <option value="{{tipo.id}}">{{tipo.tipo}}</option>
+									{% endfor %}
+								</select>					
+								<div class="custom dropdown" style="min-width: 100%;">
+									<a href="#" class="current">Seleccione un Tipo</a>
+									<a href="#" class="selector"></a>
+									<ul style="min-width: 100%;">
+										<li>Seleccione un Tipo</li>
+										{% for tipo in tipos %}
+										<li>{{tipo.tipo}}</li>
+										{% endfor %}										
+									</ul>
+								</div>											
+						</div>
+						<div class="four columns">
+							<label for="categoria">Estado:</label>
+								<select style="display:none;" id="categoria">
+								    <option value="-1" selected>Seleccione una Categoria</option>
+								    {% for categoria in categorias %}
+								    <option value="{{categoria.id}}">{{categoria.categoria}}</option>
+									{% endfor %}
+								</select>	
+								<div class="custom dropdown">
+									<a href="#" class="current">Selecciona una Categoria</a>
+									<a href="#" class="selector"></a>
+									<ul style="min-width: 100%;">
+										<li>Selecciones una Categoria</li>
+										{% for categoria in categorias %}
+										<li>{{categoria.categoria}}</li>									
+										{% endfor %}									
+									</ul>
+								</div>												
+						</div>
+					</div>	
+					<input type="file">
+					<div class="div_imagen"></div>													
+			</fieldset>						
+			<a href="#" class="button success" id="btnGuarda">Guardar</a>		
+		</form>					
+		</div>	
+		</section>		
+		
+		{% include "base/footer.html" %}	
+	</div>
+
+{% include "base/help_logo.html" %}
+
+{% include "base/scripts.html" %}
+
+<!-- Scripts -->
+<script src="{{STATIC_URL}}js/mallvictoria.js"></script>
+<script>
+	$("#btnGuarda").click(function(){
+		alert($("#tipo").val())
+	});
+	$("#nombre_usuario").text(localStorage.getItem("nombre"))
+</script>
+</body>
+</html>

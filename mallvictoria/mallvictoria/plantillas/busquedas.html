@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+{% include "base/head.html" %}  	
+</head>
+<body>
+
+{% include "base/frmregistro.html" %}	
+
+{% include "base/navbar.html" %}	
+
+	<div id="container">
+		{% include "base/header.html" %}	
+		<section id="wrapper" class="row wrap">
+			<div class="twelve mobile-four mobile-four columns">
+				Busqueda: "{{palabra}}"
+				<input type="hidden" id="palabra" value="{{palabra}}">
+				<input type="hidden" id="num_pagina" value="1">
+				<div class="row" id="lista_articulos">
+				{% load humanize %}
+				{% for articulo in lista %}
+				<article class="four columns">
+					<a href="detalle?idarticulo={{articulo.id}}">
+					<div class="articulo panel">
+						<div class="categoria">{{articulo.categoria}}</div>
+						<img src="{{MEDIA_URL}}{{articulo.imagen}}" alt="">
+						<div class="descripcion">
+						<h5>{{articulo.titulo}}</h5>
+						<div class="precio-detalle">
+							<span class="precio"><sup>$</sup> {{articulo.costo|floatformat:2|intcomma}}</span>
+						</div>
+						</div>							
+						<div class="articulo-lugar">{{articulo.usuario.ciudad.ciudad}}, {{articulo.usuario.estado.estado}}</div>
+						<duv class="articulo-tipo">{{articulo.tipo.tipo}}</duv>
+					</div>
+					</a>
+				</article>
+				{% endfor %}					
+				</div>				
+			</div>									
+		</section>		
+		{% include "base/footer.html" %}	
+	</div>
+
+{% include "base/help_logo.html" %}
+
+{% include "base/scripts.html" %}
+
+<!-- Scripts -->
+<script src="{{STATIC_URL}}js/mallvictoria.js"></script>
+<script>
+function cargar_lista(){
+	var pagina=parseInt($("#num_pagina").val());
+	var palabra=$("#palabra").val();
+	pagina=pagina+1;
+	$.post("articulos_busqueda/",{csrfmiddlewaretoken:csrftoken,pagina:pagina,palabra:palabra},function(data){
+		$("#lista_articulos").append(data);
+	});	
+}	
+$(window).scroll(function(){
+	if ($(window).scrollTop() == $(document).height() - $(window).height()){
+		cargar_lista();
+	}
+}); 
+</script>
+</body>
+</html>

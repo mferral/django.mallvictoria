@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+{% include "base/head.html" %}  	
+</head>
+<body>
+
+{% include "base/frmregistro.html" %}	
+
+{% include "base/navbar.html" %}	
+	<input type="hidden" id="token" value="{{ csrf_token }}">
+	<div id="container">
+		{% include "base/header.html" %}	
+		<section id="wrapper" class="row wrap">
+			<div class="twelve mobile-four mobile-four columns">
+				<input type="hidden" id="num_pagina" value="0">
+				<div class="row" id="lista_articulos"></div>				
+			</div>									
+		</section>		
+		
+		{% include "base/footer.html" %}	
+	</div>
+
+{% include "base/help_logo.html" %}
+
+{% include "base/scripts.html" %}
+
+<!-- Scripts -->
+<script src="{{STATIC_URL}}js/mallvictoria.js"></script>
+<script>
+$("#num_pagina").val("0");
+cargar_lista();
+
+/* Funciones de Scroll */
+function cargar_lista(){
+	var pagina=parseInt($("#num_pagina").val());
+	pagina=pagina+1;
+	$.post("articulos/",{csrfmiddlewaretoken:$("#token").val(),pagina:pagina},function(data){
+		$("#lista_articulos").append(data);
+	});	
+}
+
+$(window).scroll(function(){
+	if ($(window).scrollTop() == $(document).height() - $(window).height()){
+		cargar_lista();
+	}
+}); 
+/* Fin Funciones de Scroll */
+
+</script>
+</body>
+</html>

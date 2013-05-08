@@ -1,0 +1,64 @@
+.top-bar{
+	margin: 0px;
+	background: transparent;
+	min-height: 35px;
+	max-height: 35px;
+}
+
+.top-bar ul {
+line-height: 35px;
+height: 35px;
+}
+
+.top-bar ul > li {
+	max-height: 35px;		
+}
+
+.top-bar ul > li a:not(.button) {
+color: rgb(177, 175, 175);	
+height: 35px;
+line-height: 35px;
+}
+
+#title-bar{
+-webkit-transition: color .5s;
+-moz-transition: color .5s;
+-o-transition: color .5s;
+transition: color .5s;	
+}
+#title-bar:hover{
+	color: white;
+}
+
+.top-bar ul > li.has-dropdown .dropdown {
+	padding: 0px;
+}
+.top-bar ul > li.has-dropdown .dropdown li a {
+color: rgb(177, 175, 175);
+}
+
+#button-bar:hover{
+background: transparent;
+}
+
+#button-nav-bar:hover{
+background: transparent;
+}
+
+.top-bar ul > li.has-dropdown a::after {
+	border-color: rgb(177, 175, 175) transparent transparent transparent;
+}
+
+.top-bar ul > li.search {
+	padding: 0px;
+}	
+
+.top-bar ul > li.search form {
+	width: auto;
+}
+
+.top-bar ul > li.search form input[type="text"] {
+	border-radius: 18px 18px 18px 18px;
+	margin-right: 10px;
+	width: 200px;
+}	

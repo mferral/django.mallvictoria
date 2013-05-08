@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+{% include "base/head.html" %}  	
+
+<style>
+	.addarticulo{
+			background: #999;
+			-moz-box-shadow: 0 0 10px rgba(50, 50, 50, 0.5);
+    		-webkit-box-shadow: 0 0 10px rgba(50, 50, 50, 0.5);
+    		box-shadow: 0 0 10px rgba(50, 50, 50, 0.5);
+    		border: 1px #999 solid;
+	}
+	.fila-articulo:hover{
+		cursor: pointer;
+		background: #ccc;
+	}
+	table{
+		border-collapse: collapse;
+	}
+	.tabla{
+		display: table;
+		width: 100%;
+		border: 1px solid #ddd;
+		margin-bottom: 20px;
+	}
+	.celda{
+		display: table-cell;		
+		height: 120px;
+		background: #fff;
+		padding: 10px;
+		position: relative;
+	}
+	 .locker{
+		height: 250px;
+		text-align: center;	
+		position: relative;		
+		color: #999;
+	}
+	.locker h4{
+		color: #999;
+	}
+	.locker:hover h4{
+		color: #333;
+	}
+	.locker:hover .img-box {
+		opacity:1.0;
+	}	
+	.img-box{
+		opacity:0.4;
+		height: 135px;
+		width: 176px;
+	}
+	.locker:hover{			
+			-moz-box-shadow: 0 0 10px rgba(50, 50, 50, 0.5);
+    		-webkit-box-shadow: 0 0 10px rgba(50, 50, 50, 0.5);
+    		box-shadow: 0 0 10px rgba(50, 50, 50, 0.5);
+    		cursor: pointer;     		   	
+	}
+</style>
+</head>
+<body>
+
+{% include "base/frmregistro.html" %}	
+
+{% include "base/navbar.html" %}	
+	<input type="hidden" id="token" value="{{ csrf_token }}">
+	<div id="container">
+		{% include "base/header.html" %}	
+
+		<section id="wrapper" class="row wrap">
+		<div class="twelve mobile-four columns">
+			<h4>Espacio Gratuito</h4>
+			<p>Por registrarte con nosotros tienes la oportunidad de ofertar hasta <strong>3</strong> publicaciones de manera gratuita.</p>
+			<p>Podras marcar como terminada cualquier publicacion y ofertar de nuevo en ese espacio.</p>
+			<p>Tiempo por Publicacion 15 Dias</p>			
+			<section id="lockers">
+				<div class="row">						
+					<div class="twelve columns">
+						{% for i in range %}
+						<a href="/administracion/locker?id={{forloop.counter}}">					
+						<article class="four columns">
+							<div class="panel locker">
+								<img src="{{STATIC_URL}}img/box.png"  alt="" class="img-box">
+								<h4>Locker {{forloop.counter}}</h4>
+								<p>(click para agregar)</p>
+							</div>
+						</article>
+						</a>			
+						{% endfor %}
+					</div>											
+				</div>
+			</section>	
+		</div>		
+		</section>		
+		
+		{% include "base/footer.html" %}	
+	</div>
+
+{% include "base/help_logo.html" %}
+
+{% include "base/scripts.html" %}
+
+<!-- Scripts -->
+<script src="{{STATIC_URL}}js/mallvictoria.js"></script>
+</body>
+</html>

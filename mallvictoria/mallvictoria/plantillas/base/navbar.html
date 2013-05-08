@@ -1,0 +1,43 @@
+<nav id="navegacion" class="fixed contain-to-grid">
+	<div class="row">
+		<div class="twelve mobile-four colums">
+			<nav class="top-bar">
+					<ul class="top-bar">
+						<li class="name">
+							<h1><a href="/" id="title-bar">Mall Victoria</a></h1>
+						</li>						
+						<li class="toggle-topbar"><a href="#"></a></li>
+					</ul>					
+					<section>
+					  	<ul class="left">				  		
+					    <li class="has-dropdown" id="button-nav-bar">
+					      <a href="#">Navegacion</a>
+						    <ul class="dropdown" id="categorias"></ul>
+						</li>
+
+						</ul>
+
+						<ul class="right">
+					  		<li class="search">
+							<form id="frmBusqueda" action="busquedas" method="POST">
+								<input type="hidden" name="csrfmiddlewaretoken">
+							    <input type="text" placeholder="Buscar" id="texto_busqueda" name="texto_busqueda">
+							</form>
+							</li>
+						  	<li class="divider"></li>
+						    <li id="button-bar" style="display:none;"><a href="#"> <i class="general foundicon-unlock"></i> Entrar</a></li>
+					    <li class="has-dropdown" id="menu_login" style="display:none;">
+					      <a href="#"><span id="datos_correo"></span></a>
+						    <ul class="dropdown" id="categorias">
+						    	<li><a href="/administracion/">Mis Articulos</a></li>
+						    	<li><a href="">Perfil</a></li>
+						    	<li><a href="">Ayuda</a></li>
+						    	<li><a href="#" id="btnCerrarSession"> <i class="general foundicon-lock"></i> Cerrar</a></li>
+						    </ul>
+						</li>						    
+					  </ul>
+					</section>					
+			</nav>
+		</div>
+	</div>
+</nav>
