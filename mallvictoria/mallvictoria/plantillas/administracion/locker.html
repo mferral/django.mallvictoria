@@ -25,6 +25,16 @@
 		height: 32px;
 		width: 100%;		
 	}
+	#id_tipo{
+		display: none;
+	}
+	#id_categoria{
+		display: none;
+	}
+	#id_costo{
+		height: 28px;
+		line-height: 25px;
+	}
 </style>
 </head>
 <body>
@@ -38,16 +48,17 @@
 
 		<section id="wrapper" class="row wrap">
 		<div class="twelve mobile-four columns">
-			<h1>Locker {{idlocker}}</h1>																			
+			<h1>Locker {{idlocker}}</h1>
+			<div>{{formulario.errors}}</div>																			
 		<form class="custom" enctype="multipart/form-data" action="" method="post">{% csrf_token %}
 			<fieldset>					
-					<label for="user">Usuario:</label>
-					<span id="nombre_usuario">Nombre Usuario</span>
-					<input type="hidden" name="iduser" id="iduser">
+					<input type="hidden" name="usuario" id="id_usuario">
+					<input type="hidden" name="status" id="id_status" value="1">
 					<label for="titulo">Articulo:</label>
-					<input type="text"  id="titulo" placeholder="Nombre del Articulo (maximo 40 caracteres)">
+					{{formulario.titulo}}
 					<label for="descripcion">Descripcion:</label>
-					<textarea name="descripcion" id="descripcion" cols="30" rows="3"></textarea>
+					<!--<textarea name="descripcion" id="descripcion" cols="30" rows="3"></textarea>-->
+					{{formulario.descripcion}}
 					<div class="row">
 						<div class="four columns">
 							<label for="costo">Costo:</label>
@@ -58,25 +69,21 @@
 							        <span style="height: 28px;line-height: 25px;" class="prefix">$</span>
 							      </div>
 							      <div class="ten columns">
-							        <input type="text" id="costo" name="costo" placeholder="0.00" style="height: 28px;" />
+							        <!--<input type="text" id="costo" name="costo" placeholder="0.00" style="height: 28px;" />-->
+							        {{formulario.costo}}
 							      </div>
 							    </div>
 							</div>
 							</div>
 						</div>
+
 						<div class="four columns">
 								<label for="tipo">Tipo:</label>
-								<select style="display:none;" id="tipo">
-								    <option value="-1" selected>Seleccione un Tipo</option>
-								    {% for tipo in tipos %}
-								    <option value="{{tipo.id}}">{{tipo.tipo}}</option>
-									{% endfor %}
-								</select>					
+								{{formulario.tipo}}				
 								<div class="custom dropdown" style="min-width: 100%;">
-									<a href="#" class="current">Seleccione un Tipo</a>
+									<a href="#" class="current">{{tipos|first}}</a>
 									<a href="#" class="selector"></a>
-									<ul style="min-width: 100%;">
-										<li>Seleccione un Tipo</li>
+									<ul style="min-width: 100%;">									
 										{% for tipo in tipos %}
 										<li>{{tipo.tipo}}</li>
 										{% endfor %}										
@@ -84,18 +91,12 @@
 								</div>											
 						</div>
 						<div class="four columns">
-							<label for="categoria">Estado:</label>
-								<select style="display:none;" id="categoria">
-								    <option value="-1" selected>Seleccione una Categoria</option>
-								    {% for categoria in categorias %}
-								    <option value="{{categoria.id}}">{{categoria.categoria}}</option>
-									{% endfor %}
-								</select>	
+							<label for="categoria">Categoria:</label>
+								{{formulario.categoria}}
 								<div class="custom dropdown">
-									<a href="#" class="current">Selecciona una Categoria</a>
+									<a href="#" class="current">{{categorias|first}}</a>
 									<a href="#" class="selector"></a>
 									<ul style="min-width: 100%;">
-										<li>Selecciones una Categoria</li>
 										{% for categoria in categorias %}
 										<li>{{categoria.categoria}}</li>									
 										{% endfor %}									
@@ -103,10 +104,11 @@
 								</div>												
 						</div>
 					</div>	
-					<input type="file">
-					<div class="div_imagen"></div>													
+					{{formulario.imagen}}
+					
+					<!--<div class="div_imagen"></div>-->													
 			</fieldset>						
-			<a href="#" class="button success" id="btnGuarda">Guardar</a>		
+			<input type="submit" class="button success" value="Guardar">
 		</form>					
 		</div>	
 		</section>		
@@ -124,7 +126,7 @@
 	$("#btnGuarda").click(function(){
 		alert($("#tipo").val())
 	});
-	$("#nombre_usuario").text(localStorage.getItem("nombre"))
+	$("#id_usuario").val(localStorage.getItem("id"))
 </script>
 </body>
 </html>

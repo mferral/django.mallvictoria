@@ -1,5 +1,7 @@
 #encoding:utf-8
 from django.db import models
+import datetime
+from django.utils.timezone import utc
 
 # Create your models here.
 class Estado(models.Model):
@@ -36,17 +38,24 @@ class Usuario(models.Model):
 		return self.nombre
 
 class Articulo(models.Model):
+	#fecha=datetime.timedelta(days=15)+datetime.datetime.now()
+	#fecha=datetime.timedelta(days=15)+datetime.datetime.utcnow().replace(tzinfo=utc)
 	titulo=models.CharField(max_length=30)
 	descripcion=models.CharField(max_length=140)
 	fecha_publicacion=models.DateTimeField(auto_now=True)
-	fecha_vencimiento=models.DateTimeField(auto_now=False)
+	fecha_vencimiento=models.DateTimeField(editable=False,null=True)
 	costo=models.DecimalField(max_digits=7,decimal_places=2)
 	imagen=models.ImageField(upload_to='articulos')
 	usuario=models.ForeignKey(Usuario)
 	tipo=models.ForeignKey(Tipo)
 	categoria=models.ForeignKey(Categoria)
+	status=models.SmallIntegerField(default=1,blank=True,null=True)	
 	def __unicode__(self):
 		return self.titulo
+	def save(self, *args, **kwargs):
+		fecha=datetime.timedelta(days=15)+datetime.datetime.utcnow().replace(tzinfo=utc)
+		self.fecha_vencimiento = fecha
+		super(Articulo, self).save(*args, **kwargs)	
 
 class ArticuloUsuario(models.Model):
 	usuario=models.ForeignKey(Usuario)
@@ -54,3 +63,16 @@ class ArticuloUsuario(models.Model):
 	orden=models.SmallIntegerField()
 	def __unicode__(self):
 		return self.articulo.titulo
+
+class Visita(models.Model):
+	articulo=models.ForeignKey(Articulo)
+	ip=models.CharField(max_length=15)
+	fecha_publicacion=models.DateTimeField(auto_now=True)
+	def __unicode__(self):
+		return articulo.titulo
+	#def create(self, *args, **kwargs):
+	#	now=datetime.datetime.utcnow().replace(tzinfo=utc)
+	#	ahora=datetime.datetime.today()
+	#	super(Visita, self).create(*args, **kwargs)
+	#	self.fecha_publicacion = ahora
+    

@@ -32,7 +32,7 @@
 		position: relative;
 	}
 	 .locker{
-		height: 250px;
+		height: 380px;
 		text-align: center;	
 		position: relative;		
 		color: #999;
@@ -51,6 +51,23 @@
 		height: 135px;
 		width: 176px;
 	}
+
+	.img-box_{
+		height: 135px;
+		width: 176px;
+	}
+	.locker_{
+		height: 380px;
+		text-align: center;	
+		position: relative;					
+		-moz-box-shadow: 0 0 10px rgba(50, 50, 50, 0.5);
+    	-webkit-box-shadow: 0 0 10px rgba(50, 50, 50, 0.5);
+    	box-shadow: 0 0 10px rgba(50, 50, 50, 0.5);   		   	
+	}
+	.locker_ h4{
+		color: #333;
+	}
+
 	.locker:hover{			
 			-moz-box-shadow: 0 0 10px rgba(50, 50, 50, 0.5);
     		-webkit-box-shadow: 0 0 10px rgba(50, 50, 50, 0.5);
@@ -73,21 +90,11 @@
 			<h4>Espacio Gratuito</h4>
 			<p>Por registrarte con nosotros tienes la oportunidad de ofertar hasta <strong>3</strong> publicaciones de manera gratuita.</p>
 			<p>Podras marcar como terminada cualquier publicacion y ofertar de nuevo en ese espacio.</p>
-			<p>Tiempo por Publicacion 15 Dias</p>			
+			<p>Tiempo por Publicacion 15 Dias</p>
+						
 			<section id="lockers">
 				<div class="row">						
-					<div class="twelve columns">
-						{% for i in range %}
-						<a href="/administracion/locker?id={{forloop.counter}}">					
-						<article class="four columns">
-							<div class="panel locker">
-								<img src="{{STATIC_URL}}img/box.png"  alt="" class="img-box">
-								<h4>Locker {{forloop.counter}}</h4>
-								<p>(click para agregar)</p>
-							</div>
-						</article>
-						</a>			
-						{% endfor %}
+					<div class="twelve columns" id="lockers">
 					</div>											
 				</div>
 			</section>	
@@ -103,5 +110,10 @@
 
 <!-- Scripts -->
 <script src="{{STATIC_URL}}js/mallvictoria.js"></script>
+<script>
+	$.post("/articulo_locker",{'csrfmiddlewaretoken':csrftoken,'idusuario':localStorage.getItem('id')},function(data){
+		$("#lockers").html(data);
+	}); 	
+</script>
 </body>
 </html>

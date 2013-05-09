@@ -15,10 +15,13 @@ urlpatterns = patterns('',
     url(r'^detalle$', 'principal.views.articulo_detalle'),
     url(r'^busquedas$', 'principal.views.busqueda_articulos'),
     url(r'^login$', 'principal.views.login'),
-
     #urls admin
-    url(r'^administracion/$', 'principal.views.administracion', name='mallvictoria'),
-    url(r'^administracion/locker$', 'principal.views.locker', name='mallvictoria'),
+    url(r'^administracion/$', 'principal.views.administracion'),
+    url(r'^administracion/locker$', 'principal.views.locker'),
+    url(r'^locker$', 'principal.views.frmarticulos'),
+    url(r'^articulo_locker$', 'principal.views.busca_articulos_usuario'),
+    url(r'^termina_publicacion$', 'principal.views.terminar_publicacion'),
+    
     # url(r'^mallvictoria/', include('mallvictoria.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

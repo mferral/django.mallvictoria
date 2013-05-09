@@ -52,7 +52,7 @@ function cargar_lista(){
 	var pagina=parseInt($("#num_pagina").val());
 	var idcategoria=$("#idcategoria").val();
 	pagina=pagina+1;
-	$.post("categoria_busqueda/",{csrfmiddlewaretoken:csrftoken,pagina:pagina,idcategoria:idcategoria},function(data){
+	$.post("articulos_categoria_busqueda/",{csrfmiddlewaretoken:csrftoken,pagina:pagina,idcategoria:idcategoria},function(data){
 		$("#lista_articulos").append(data);
 	});	
 }	

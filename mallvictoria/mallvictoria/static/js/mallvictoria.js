@@ -18,7 +18,7 @@ function getCookie(name) {
 var csrftoken = getCookie('csrftoken');
 
 $(document).ready(function() {  
-	$("#categorias").load("categorias/");  
+	$("#categorias").load("/categorias/");  
 	if (typeof(localStorage) != 'undefined' ) {
 		if(localStorage.length>0){
 			entrarSession();	
