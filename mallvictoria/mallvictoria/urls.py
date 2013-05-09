@@ -7,6 +7,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'principal.views.home', name='mallvictoria'),
+    url(r'^ayuda$', 'principal.views.ayuda'),
     url(r'^categorias/$', 'principal.views.lista_categorias'),
     url(r'^articulos/$', 'principal.views.lista_articulos'),
     url(r'^articulos_busqueda/$', 'principal.views.paginar_articulos'),
@@ -20,7 +21,7 @@ urlpatterns = patterns('',
     url(r'^administracion/locker$', 'principal.views.locker'),
     url(r'^locker$', 'principal.views.frmarticulos'),
     url(r'^articulo_locker$', 'principal.views.busca_articulos_usuario'),
-    url(r'^termina_publicacion$', 'principal.views.terminar_publicacion'),
+    url(r'^termina_publicacion$', 'principal.views.termina_publicacion'),
     
     # url(r'^mallvictoria/', include('mallvictoria.foo.urls')),
 

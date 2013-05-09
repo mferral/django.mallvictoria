@@ -32,7 +32,7 @@
 					<div class="six columns text-right col_der">Tipo:</div>
 					<div class="six columns text-left col_izq">{{articulo.0.articulo.tipo.tipo}}</div>
 				</div>
-				<button class="round small button btnCerrarPub" idarticulo="{{articulo.0.articulo.id}}">Terminar Publicaci&n</button>
+				<button class="round small button btnCerrarPub" idarticulo="{{articulo.0.articulo.id}}">Terminar Publicaci&oacute;n</button>
 			</div>
 		</article>
 	{% else %}
@@ -51,7 +51,9 @@
 <script>
 	$(".btnCerrarPub").click(function(){
 		console.log("click");
-		var idarticulo=$(this).attr("");
-		$.post("/terminar_publicacion",{'csrfmiddlewaretoken':csrftoken,'idarticulo':idarticulo}); 	
+		var idarticulo=$(this).attr("idarticulo");
+		$.post("/termina_publicacion",{csrfmiddlewaretoken:csrftoken,idarticulo:idarticulo},function(){
+			window.location='/administracion/';
+		}); 	
 	});
 </script>

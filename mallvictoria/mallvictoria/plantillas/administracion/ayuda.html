@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+{% include "base/head.html" %}  	
+</head>
+<body>
+
+{% include "base/frmregistro.html" %}	
+
+{% include "base/navbar.html" %}	
+	<input type="hidden" id="token" value="{{ csrf_token }}">
+	<div id="container">
+		{% include "base/header.html" %}	
+		<section id="wrapper" class="row wrap">
+			<div class="twelve columns">
+				<h3>Gracias por registrarte en mallvictoria.com</h3>
+				<p>Ahora date un tiempo para leer este tutorial antes de comenzar.</p>
+				<h4>Tutorial</h4>
+				<p><span class="success label">Paso 1:</span> Completa los datos de tu perfil para que los usuarios que vean tus articulos puedan localizarte mas facilmente.</p>
+				<p>
+					<span class="success label">Paso 2:</span> Tienes 3 espacios que puedes utilizar para postear cualquier articulo o servicio que quieras promocionar. Cada espacio tendra una duracion de 15 dias, al cumplirse los 15 dias el articulo se borrara de la lista y tu espacio quedara libre para que lo puedas reutilizar cuantas veces quieras. 
+				</p>
+				<p>Podras marcar cualquiera de tus articulos como terminado y re-utilizar ese espacio.</p>
+				<p><span class="success label">Paso 3:</span> Si 3 espacios no te son suficientes puedes acceder a la seccion de comprar y adquirir mas espacios para mas articulos.</p>
+				<p><strong>Atencion!</strong> Los espacios comprados no son re-utilizables.</p>
+			</div>									
+		</section>		
+		
+		{% include "base/footer.html" %}	
+	</div>
+
+{% include "base/help_logo.html" %}
+
+{% include "base/scripts.html" %}
+
+<!-- Scripts -->
+<script src="{{STATIC_URL}}js/mallvictoria.js"></script>
+</body>
+</html>

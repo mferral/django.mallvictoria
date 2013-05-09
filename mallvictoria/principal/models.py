@@ -43,7 +43,7 @@ class Articulo(models.Model):
 	titulo=models.CharField(max_length=30)
 	descripcion=models.CharField(max_length=140)
 	fecha_publicacion=models.DateTimeField(auto_now=True)
-	fecha_vencimiento=models.DateTimeField(editable=False,null=True)
+	fecha_vencimiento=models.DateTimeField(default=datetime.datetime.now(),editable=False,null=True)
 	costo=models.DecimalField(max_digits=7,decimal_places=2)
 	imagen=models.ImageField(upload_to='articulos')
 	usuario=models.ForeignKey(Usuario)
@@ -52,10 +52,10 @@ class Articulo(models.Model):
 	status=models.SmallIntegerField(default=1,blank=True,null=True)	
 	def __unicode__(self):
 		return self.titulo
-	def save(self, *args, **kwargs):
-		fecha=datetime.timedelta(days=15)+datetime.datetime.utcnow().replace(tzinfo=utc)
-		self.fecha_vencimiento = fecha
-		super(Articulo, self).save(*args, **kwargs)	
+	#def save(self, *args, **kwargs):
+	#	fecha=datetime.timedelta(days=15)+datetime.datetime.utcnow().replace(tzinfo=utc)
+	#	self.fecha_vencimiento = fecha
+	#	super(Articulo, self).save(*args, **kwargs)	
 
 class ArticuloUsuario(models.Model):
 	usuario=models.ForeignKey(Usuario)
