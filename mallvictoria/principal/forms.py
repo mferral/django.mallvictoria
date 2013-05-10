@@ -15,3 +15,17 @@ class ArticuloForm(forms.ModelForm):
     	super(ArticuloForm, self).__init__(*args, **kwargs)
     	self.fields['categoria'].empty_label = None
     	self.fields['tipo'].empty_label = None
+
+class ArticuloFormEdit(forms.ModelForm):
+    class Meta:
+        model = Articulo
+        widgets={
+            'descripcion':Textarea(attrs={'cols':30,'rows':3}),
+            'titulo':TextInput(attrs={'placeholder':'Nombre del Articulo (maximo 30 caracteres)'}),
+        }
+        fields=['titulo','descripcion','tipo','categoria','costo']
+
+    def __init__(self, *args, **kwargs):
+        super(ArticuloFormEdit, self).__init__(*args, **kwargs)
+        self.fields['categoria'].empty_label = None
+        self.fields['tipo'].empty_label = None

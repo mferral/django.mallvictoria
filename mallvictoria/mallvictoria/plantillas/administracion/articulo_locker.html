@@ -15,7 +15,7 @@
 	{% if articulo.0.articulo %}
 		<article class="four columns">
 			<div class="panel locker_">
-				<img src="{{MEDIA_URL}}{{articulo.0.articulo.imagen}}"  alt="" class="img-box_">
+				<img src="{{articulo.0.articulo.imagen.thumbnail.url}}"  alt="" class="img-box_">
 				<h4>{{articulo.0.articulo.titulo}}</h4>
 			    <!--{{articulo.0.articulo.fecha_publicacion|date:'SHORT_DATE_FORMAT'}}
 				Vencimiento: {{articulo.0.articulo.fecha_vencimiento|date:'SHORT_DATE_FORMAT'}}-->
@@ -32,7 +32,8 @@
 					<div class="six columns text-right col_der">Tipo:</div>
 					<div class="six columns text-left col_izq">{{articulo.0.articulo.tipo.tipo}}</div>
 				</div>
-				<button class="round small button btnCerrarPub" idarticulo="{{articulo.0.articulo.id}}">Terminar Publicaci&oacute;n</button>
+				<a href="/editlocker?id={{forloop.counter}}&idarticulo={{articulo.0.articulo.id}}" class="round small button" idarticulo="{{articulo.0.articulo.id}}">Editar</a>
+				<button class="round small button btnCerrarPub" idarticulo="{{articulo.0.articulo.id}}">Terminar</button>
 			</div>
 		</article>
 	{% else %}

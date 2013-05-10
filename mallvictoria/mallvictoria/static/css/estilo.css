@@ -366,6 +366,38 @@ article .articulo .descripcion .precio-detalle sup{
 	color: white;
 }
 
+/* Lockers CSS */
+	form.custom div.custom.dropdown ul {
+	overflow-y: auto;
+	max-height: 200px;
+	min-width: 95%;
+	}
+	#nombre_usuario{
+		display: block;
+		font-size: 14px;
+		margin: 0 0 12px 0;
+		padding: 6px;
+		height: 32px;
+		width: 100%;		
+	}
+
+	select{
+		display: block;
+		width: auto;
+		line-height: 26px;
+		min-height: 28px;
+		padding: 0;
+		padding-left: 6px;
+		padding-right: 38px;
+		border: solid 1px #dddddd;
+		color: #141414;
+		white-space: nowrap;	
+		width: 100%;	
+		background: url(../img/down.png) no-repeat 97% #fff;		
+		-webkit-appearance:none;
+	}
+
+	/* Fin Lockers */
 @media screen and (max-width: 980px){
 	article .articulo img{
 		height: 180px;

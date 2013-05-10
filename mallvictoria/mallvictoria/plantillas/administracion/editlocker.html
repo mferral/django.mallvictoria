@@ -6,7 +6,7 @@
 	#id_costo{
 		height: 28px;
 		line-height: 25px;
-	}
+	}	
 </style>
 </head>
 <body>
@@ -26,6 +26,7 @@
 			<fieldset>					
 					<input type="hidden" name="usuario" id="id_usuario">
 					<input type="hidden" name="status" id="id_status" value="1">
+					<img src="{{imagen}}" alt="">
 					<label for="titulo">Articulo:</label>
 					{{formulario.titulo}}
 					<label for="descripcion">Descripcion:</label>
@@ -53,10 +54,12 @@
 						</div>
 						<div class="four columns">
 							<label for="categoria">Categoria:</label>
-								{{formulario.categoria}}											
+								{{formulario.categoria}}
+										<!--{% for value, text in formulario.categoria.field.choices %}
+											<li>{{text}}</li>
+										{% endfor %}	-->																			
 						</div>
-					</div>	
-					{{formulario.imagen}}												
+					</div>												
 			</fieldset>						
 			<input type="submit" class="button success" value="Guardar">
 		</form>					
@@ -73,9 +76,6 @@
 <!-- Scripts -->
 <script src="{{STATIC_URL}}js/mallvictoria.js"></script>
 <script>
-	$("#btnGuarda").click(function(){
-		alert($("#tipo").val())
-	});
 	$("#id_usuario").val(localStorage.getItem("id"))
 </script>
 </body>

@@ -51,7 +51,7 @@
 									<article class="three columns">
 										<a href="detalle?idarticulo={{articulo_relacionado.id}}">
 										<div class="articulo-relacionado panel">
-											<img src="{{MEDIA_URL}}{{articulo_relacionado.imagen}}" alt="">
+											<img src="{{articulo_relacionado.imagen.thumbnail.url}}" alt="">
 											<div class="descripcion">{{articulo_relacionado.titulo}}</div>
 											<div class="precio">$ {{articulo_relacionado.costo}}</div>
 										</div>

@@ -2,8 +2,8 @@
 from django.db import models
 import datetime
 from django.utils.timezone import utc
+from stdimage import StdImageField
 
-# Create your models here.
 class Estado(models.Model):
 	estado=models.CharField(max_length=30)
 	def __unicode__(self):
@@ -27,10 +27,10 @@ class Tipo(models.Model):
 
 class Usuario(models.Model):
 	nombre=models.CharField(max_length=40)
-	direccion=models.CharField(max_length=150)
-	telefono=models.CharField(max_length=20)
-	sitioweb=models.URLField(max_length=100)
-	correo=models.EmailField(max_length=75)
+	direccion=models.CharField(max_length=150,blank=True)
+	telefono=models.CharField(max_length=20,blank=True)
+	sitioweb=models.URLField(max_length=100,blank=True)
+	correo=models.EmailField(max_length=75,unique=True)
 	password=models.CharField(max_length=20)
 	estado=models.ForeignKey(Estado)
 	ciudad=models.ForeignKey(Ciudad)
@@ -38,24 +38,18 @@ class Usuario(models.Model):
 		return self.nombre
 
 class Articulo(models.Model):
-	#fecha=datetime.timedelta(days=15)+datetime.datetime.now()
-	#fecha=datetime.timedelta(days=15)+datetime.datetime.utcnow().replace(tzinfo=utc)
 	titulo=models.CharField(max_length=30)
 	descripcion=models.CharField(max_length=140)
-	fecha_publicacion=models.DateTimeField(auto_now=True)
+	fecha_publicacion=models.DateTimeField(default=datetime.datetime.now(),editable=False)
 	fecha_vencimiento=models.DateTimeField(default=datetime.datetime.now(),editable=False,null=True)
 	costo=models.DecimalField(max_digits=7,decimal_places=2)
-	imagen=models.ImageField(upload_to='articulos')
+	imagen=StdImageField(upload_to='articulos', size=(800, 600, True),thumbnail_size=(258, 180, True))
 	usuario=models.ForeignKey(Usuario)
 	tipo=models.ForeignKey(Tipo)
 	categoria=models.ForeignKey(Categoria)
 	status=models.SmallIntegerField(default=1,blank=True,null=True)	
 	def __unicode__(self):
 		return self.titulo
-	#def save(self, *args, **kwargs):
-	#	fecha=datetime.timedelta(days=15)+datetime.datetime.utcnow().replace(tzinfo=utc)
-	#	self.fecha_vencimiento = fecha
-	#	super(Articulo, self).save(*args, **kwargs)	
 
 class ArticuloUsuario(models.Model):
 	usuario=models.ForeignKey(Usuario)
@@ -70,9 +64,10 @@ class Visita(models.Model):
 	fecha_publicacion=models.DateTimeField(auto_now=True)
 	def __unicode__(self):
 		return articulo.titulo
-	#def create(self, *args, **kwargs):
-	#	now=datetime.datetime.utcnow().replace(tzinfo=utc)
-	#	ahora=datetime.datetime.today()
-	#	super(Visita, self).create(*args, **kwargs)
-	#	self.fecha_publicacion = ahora
-    
+
+	#fecha=datetime.timedelta(days=15)+datetime.datetime.now()
+	#fecha=datetime.timedelta(days=15)+datetime.datetime.utcnow().replace(tzinfo=utc)
+	#def save(self, *args, **kwargs):
+	#	fecha=datetime.timedelta(days=15)+datetime.datetime.utcnow().replace(tzinfo=utc)
+	#	self.fecha_vencimiento = fecha
+	#	super(Articulo, self).save(*args, **kwargs)	

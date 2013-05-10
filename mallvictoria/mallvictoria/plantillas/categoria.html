@@ -22,7 +22,7 @@
 					<a href="detalle?idarticulo={{articulo.id}}">
 					<div class="articulo panel">
 						<div class="categoria">{{articulo.categoria}}</div>
-						<img src="{{MEDIA_URL}}{{articulo.imagen}}" alt="">
+						<img src="{{articulo.imagen.thumbnail.url}}" alt="">
 						<div class="descripcion">
 						<h5>{{articulo.titulo}}</h5>
 						<div class="precio-detalle">
