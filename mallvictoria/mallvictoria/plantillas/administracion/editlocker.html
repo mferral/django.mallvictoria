@@ -20,20 +20,21 @@
 
 		<section id="wrapper" class="row wrap">
 		<div class="twelve mobile-four columns">
-			<h1>Locker {{idlocker}}</h1>
-			<div>{{formulario.errors}}</div>																			
+			<h1>Locker {{idlocker}}</h1>																		
 		<form class="custom" enctype="multipart/form-data" action="" method="post">{% csrf_token %}
 			<fieldset>					
 					<input type="hidden" name="usuario" id="id_usuario">
 					<input type="hidden" name="status" id="id_status" value="1">
-					<img src="{{imagen}}" alt="">
-					<label for="titulo">Articulo:</label>
+					
+					<label for="titulo" {%if formulario.errors.titulo%}class='error'{%endif%}>Articulo:</label>	
 					{{formulario.titulo}}
-					<label for="descripcion">Descripcion:</label>
+					{{formulario.errors.titulo}}
+					<label for="descripcion" {%if formulario.errors.descripcion%}class='error'{%endif%}>Descripcion:</label>
 					{{formulario.descripcion}}
+					{{formulario.errors.descripcion}}
 					<div class="row">
 						<div class="four columns">
-							<label for="costo">Costo:</label>
+							<label for="costo" {%if formulario.errors.costo%}class='error'{%endif%}>Costo:</label>
 							<div class="row">
 							  <div class="twelve columns">
 							    <div class="row collapse">
@@ -47,7 +48,6 @@
 							</div>
 							</div>
 						</div>
-
 						<div class="four columns">
 								<label for="tipo">Tipo:</label>
 								{{formulario.tipo}}														
@@ -59,9 +59,13 @@
 											<li>{{text}}</li>
 										{% endfor %}	-->																			
 						</div>
-					</div>												
+					</div>	
+					<div class="row"><div class="twelve columns">{{formulario.errors.costo}}</div></div>
+						<label for="imagen">Imagen:</label>
+						<img src="{{imagen}}" alt="">											
 			</fieldset>						
 			<input type="submit" class="button success" value="Guardar">
+			<span class="msg_guardan" style="display:none;"> * Procesando los datos, espere un monento por favor.</span>
 		</form>					
 		</div>	
 		</section>		
@@ -76,7 +80,13 @@
 <!-- Scripts -->
 <script src="{{STATIC_URL}}js/mallvictoria.js"></script>
 <script>
-	$("#id_usuario").val(localStorage.getItem("id"))
+	$("#frmarticulo").submit(function(){
+		//$(this).val('Guardando...');
+		$(".msg_guardan").css("display","inline");
+		$(this).attr("disabled","disabled");
+
+	});
+	$("#id_usuario").val(localStorage.getItem("id"));
 </script>
 </body>
 </html>

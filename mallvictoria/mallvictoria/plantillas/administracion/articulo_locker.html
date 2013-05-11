@@ -32,8 +32,8 @@
 					<div class="six columns text-right col_der">Tipo:</div>
 					<div class="six columns text-left col_izq">{{articulo.0.articulo.tipo.tipo}}</div>
 				</div>
-				<a href="/editlocker?id={{forloop.counter}}&idarticulo={{articulo.0.articulo.id}}" class="round small button" idarticulo="{{articulo.0.articulo.id}}">Editar</a>
-				<button class="round small button btnCerrarPub" idarticulo="{{articulo.0.articulo.id}}">Terminar</button>
+				<a href="/editlocker?id={{forloop.counter}}&idarticulo={{articulo.0.articulo.id}}" class="round small button btn_locker" idarticulo="{{articulo.0.articulo.id}}">Editar</a>
+				<button class="round small button btnCerrarPub btn_locker" idarticulo="{{articulo.0.articulo.id}}">Terminar</button>
 			</div>
 		</article>
 	{% else %}

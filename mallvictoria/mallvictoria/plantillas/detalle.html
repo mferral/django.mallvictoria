@@ -23,7 +23,7 @@
 							<p class="etiqueta" style="margin-bottom:0px;">Precio:</p>
 							<p class="precio"><sup>$</sup> {{articulo.costo}}</p>
 							<p>
-							<a class="social-button button" href="#">Facebook</a>
+							<a class="social-button button" href="http://www.facebook.com/sharer.php?u=http://mallvictoria.webactional.com">Facebook</a>
 							<a class="social-button button" href="#">Twitter</a>
 							</p>
 							<p class="etiqueta">Decripcion:</p>
@@ -31,9 +31,13 @@
 							<section id="datos-contacto">
 								<p class="etiqueta">Datos de Contacto;</p>
 								<label><i class="general foundicon-address-book"></i> {{articulo.usuario.nombre}}</label>
-								<label><i class="general foundicon-location"></i> {{articulo.usuario.direccion}}</label>									
-								<label><i class="general foundicon-mail"></i> {{articulo.usuario.correo}}</label>
-								<label><i class="general foundicon-phone"></i> {{articulo.usuario.telefono}}</label>						
+								{% if articulo.usuario.direccion %}
+								<label><i class="general foundicon-location"></i> {{articulo.usuario.direccion}}</label>
+								{% endif %}
+								{% if articulo.usuario.telefono %}
+								<label><i class="general foundicon-phone"></i> {{articulo.usuario.telefono}}</label>
+								{% endif %}					
+								<label><i class="general foundicon-mail"></i> {{articulo.usuario.correo}}</label>	
 								<label><i class="general foundicon-compass"></i> {{articulo.usuario.ciudad.ciudad}}, {{articulo.usuario.estado.estado}}</label>				
 							</section>	
 						</div>	

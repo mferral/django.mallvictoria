@@ -8,7 +8,6 @@ class ArticuloForm(forms.ModelForm):
         model = Articulo
         widgets={
         	'descripcion':Textarea(attrs={'cols':30,'rows':3}),
-        	'titulo':TextInput(attrs={'placeholder':'Nombre del Articulo (maximo 30 caracteres)'}),
         }
     def __init__(self, *args, **kwargs):
     	super(ArticuloForm, self).__init__(*args, **kwargs)
