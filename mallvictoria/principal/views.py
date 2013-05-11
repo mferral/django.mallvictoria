@@ -8,8 +8,8 @@ from django.shortcuts import redirect,render_to_response, get_object_or_404
 import datetime
 from django.utils.timezone import utc
 
-DIAS_PUBLICACION=1 
-NUM_ELEMENTOS_POR_PAGINA=14
+DIAS_PUBLICACION=15 
+NUM_ELEMENTOS_POR_PAGINA=30
 now_=datetime.date.today()
 quincedias=datetime.timedelta(days=DIAS_PUBLICACION)+now_;
 
