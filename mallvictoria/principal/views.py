@@ -1,6 +1,6 @@
 # Create your views here.
 from principal.models import Categoria, Usuario, Articulo, Tipo, ArticuloUsuario, Visita
-from principal.forms import ArticuloForm, ArticuloFormEdit
+from principal.forms import ArticuloForm, ArticuloFormEdit, UsuarioForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -9,7 +9,7 @@ import datetime
 from django.utils.timezone import utc
 
 DIAS_PUBLICACION=1
-NUM_ELEMENTOS_POR_PAGINA=3
+NUM_ELEMENTOS_POR_PAGINA=15
 now_=datetime.date.today()
 quincedias=datetime.timedelta(days=DIAS_PUBLICACION)+now_;
 
@@ -149,7 +149,17 @@ def frmarticulosedit(request):
 		formulario=ArticuloFormEdit(instance=articulo)
 	return render_to_response('administracion/editlocker.html',{'imagen':articulo.imagen.thumbnail.url,'idlocker':idlocker,'formulario':formulario},context_instance=RequestContext(request))
 
-
+def frmusuarioedit(request):
+	idusuario=request.GET['idusuario']
+	usuario=get_object_or_404(Usuario,pk=idusuario)
+	if request.POST:
+		formulario=UsuarioForm(request.POST,instance=usuario)
+		if formulario.is_valid():
+			formulario.save()
+			return HttpResponseRedirect('/')
+	else:
+		formulario=UsuarioForm(instance=usuario)
+	return render_to_response('administracion/perfil.html',{'formulario':formulario},context_instance=RequestContext(request))
 	
 def termina_publicacion(request):
 	if request.method== 'POST':

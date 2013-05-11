@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+{% include "base/head.html" %}  	
+<style>
+	#id_costo{
+		height: 28px;
+		line-height: 25px;
+	}
+</style>
+</head>
+<body>
+
+{% include "base/frmregistro.html" %}	
+
+{% include "base/navbar.html" %}	
+		{% include "base/header.html" %}	
+
+		<section id="wrapper" class="row wrap">
+		<div class="twelve mobile-four columns">
+			<h1>Perfil</h1>
+			<div>{{formulario.errors}}</div>																			
+		<form class="custom" action="" method="post">{% csrf_token %}
+			<fieldset>					
+				{{formulario.estado}}
+				{{formulario.ciudad}}
+
+			</fieldset>						
+			<input type="submit" class="button success" value="Guardar">
+		</form>					
+		</div>	
+		</section>		
+		
+		{% include "base/footer.html" %}	
+	</div>
+
+{% include "base/help_logo.html" %}
+
+{% include "base/scripts.html" %}
+
+<!-- Scripts -->
+<script src="{{STATIC_URL}}js/mallvictoria.js"></script>
+</body>
+</html>

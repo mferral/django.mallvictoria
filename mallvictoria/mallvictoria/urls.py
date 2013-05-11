@@ -21,6 +21,7 @@ urlpatterns = patterns('',
     url(r'^administracion/locker$', 'principal.views.locker'),
     url(r'^locker$', 'principal.views.frmarticulos'),
     url(r'^editlocker$', 'principal.views.frmarticulosedit'),
+    url(r'^perfil$', 'principal.views.frmusuarioedit'),
     url(r'^articulo_locker$', 'principal.views.busca_articulos_usuario'),
     url(r'^termina_publicacion$', 'principal.views.termina_publicacion'),
     
