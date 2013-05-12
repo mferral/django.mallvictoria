@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="es">
 <head>
+<meta property=”og:image” content=”{{articulo.imagen.thumbnail.url}}” />
+<meta property=”title” content=”{{articulo.titulo}}” />	
+<meta property=”descripcion” content=”{{articulo.titulo}}” />
 {% include "base/head.html" %}  	
 </head>
 <body>
@@ -23,7 +26,7 @@
 							<p class="etiqueta" style="margin-bottom:0px;">Precio:</p>
 							<p class="precio"><sup>$</sup> {{articulo.costo}}</p>
 							<p>
-							<a class="social-button button" href="http://www.facebook.com/sharer.php?u=http://mallvictoria.webactional.com">Facebook</a>
+							<a class="social-button button" href="http://www.facebook.com/sharer.php?u=http://www.mallvictoria.com/detalle?idarticulo={{articulo.id}}">Facebook</a>
 							<a class="social-button button" href="#">Twitter</a>
 							</p>
 							<p class="etiqueta">Decripcion:</p>

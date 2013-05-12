@@ -38,9 +38,15 @@
 					</a>
 				</article>
 				{% empty %}
-				<div class="errorlist msg_busqueda">
-					La palabra de busqueda ({{palabra}}) es demaciado corta intente con una mayor a 3 caracteres.
-				</div>
+					{% if msg %}
+					<div class="errorlist msg_busqueda">
+						{{msg}}
+					</div>
+					{%else%}
+					<div class="errorlist msg_busqueda">
+						No existen registros relacionados con la palabra ({{palabra}})
+					</div>
+					{%endif%}
 				{% endfor %}					
 				</div>				
 			</div>									

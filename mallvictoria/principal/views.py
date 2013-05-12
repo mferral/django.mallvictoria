@@ -54,7 +54,8 @@ def busqueda_articulos(request):
 			contacts = paginator.page(1)
 			return render_to_response('busquedas.html',{'lista':contacts,'palabra':palabra},context_instance=RequestContext(request))
 		else:
-			return render_to_response('busquedas.html',{'palabra':palabra},context_instance=RequestContext(request))
+			msg='La palabra ('+palabra+') de busqueda es demaciado corta intente con una mayor a 3 caracteres.'
+			return render_to_response('busquedas.html',{'palabra':palabra,'msg':msg},context_instance=RequestContext(request))
 	except Exception as e:
 		return redirect('/')
 
