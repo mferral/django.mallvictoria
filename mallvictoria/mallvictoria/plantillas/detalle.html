@@ -6,12 +6,10 @@
 <meta property=og:description content="{{articulo.descripcion}}" />
 {% include "base/head.html" %}  	
 </head>
-<body>
+<body>	
 {% load humanize %}
 {% include "base/frmregistro.html" %}	
-
 {% include "base/navbar.html" %}	
-
 	<div id="container">
 		{% include "base/header.html" %}	
 		<section id="wrapper" class="row wrap">
@@ -25,9 +23,14 @@
 						<div class="four columns">
 							<p class="etiqueta" style="margin-bottom:0px;">Precio:</p>
 							<p class="precio"><sup>$</sup> {{articulo.costo}}</p>
+							<p class="etiqueta">Compartir:</p>
 							<p>
-							<a class="social-button button" href="http://www.facebook.com/sharer.php?u=http://www.mallvictoria.com/detalle?idarticulo={{articulo.id}}">Facebook</a>
-							<a class="social-button button" href="#">Twitter</a>
+								<div class="boton_social">
+								<a id="facebook" href="http://www.facebook.com/sharer.php?u=http://www.mallvictoria.com/detalle?idarticulo={{articulo.id}}" target="_blank" class="social-icono"><i class="social foundicon-facebook icono" style="color: #3B5998;"> <span class="social-texto">Facebook</span></i></a>
+								</div>
+								<div class="boton_social">
+								<a id="twitter" href="http://twitter.com/share?text=@mallvictoria%20{{tweet}}%20&url=http://www.mallvictoria.com/detalle?idarticulo={{articulo.id}}" target="_black" class="social-icono"><i class="social foundicon-twitter icono" style="color:#4099ff;"> <span class="social-texto">Twitter</span></i></a>
+								</div>
 							</p>
 							<p class="etiqueta">Decripcion:</p>
 							<p>{{articulo.descripcion}}</p>

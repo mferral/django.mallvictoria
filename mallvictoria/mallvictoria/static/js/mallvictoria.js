@@ -19,6 +19,7 @@ var csrftoken = getCookie('csrftoken');
 
 $(document).ready(function() {  
 	$("#categorias").load("/categorias/");  
+    $("#categorias_footer").load("/categorias/");  
 	if (typeof(localStorage) != 'undefined' ) {
 		if(localStorage.length>0){
 			entrarSession();	

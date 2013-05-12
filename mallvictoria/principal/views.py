@@ -92,8 +92,9 @@ def articulo_detalle(request):
 	idarticulo=request.GET['idarticulo']
 	articulo=Articulo.objects.get(pk=idarticulo)
 	Visita.objects.create(articulo=articulo,ip=request.META.get('REMOTE_ADDR'))
+	tweet=articulo.titulo.replace(" ","%20")
 	articulos_relacionados=Articulo.objects.exclude(status=False).filter(fecha_vencimiento__gte=datetime.date.today()).filter(categoria__id=articulo.categoria.id).order_by('?')[:4]
-	return render_to_response('detalle.html',{'articulo':articulo,'articulos_relacionados':articulos_relacionados},context_instance=RequestContext(request))
+	return render_to_response('detalle.html',{'articulo':articulo,'tweet':tweet,'articulos_relacionados':articulos_relacionados},context_instance=RequestContext(request))
 
 def administracion(request):
 	return render_to_response('administracion/principal.html',context_instance=RequestContext(request))

@@ -127,7 +127,6 @@
 		$("#lockers").html(data);
 	}); 	
 	$("#btn_confirmar").click(function(){
-		console.log($("#btn_confirmar").val());
 		$.post("/termina_publicacion",{csrfmiddlewaretoken:csrftoken,idarticulo:$("#id_articulo_terminar").val()},function(){
 			window.location='/administracion/';
 		}); 	
