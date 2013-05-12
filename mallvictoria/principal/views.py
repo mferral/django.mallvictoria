@@ -48,11 +48,13 @@ def lista_articulos(request):
 def busqueda_articulos(request):
 	try:
 		palabra=request.POST['texto_busqueda']
-		#articulos=Articulo.objects.exclude(status=False).filter(fecha_vencimiento__range=(now_,quincedias),titulo__icontains=palabra).order_by('-fecha_publicacion')
-		articulos=Articulo.objects.exclude(status=False).filter(fecha_vencimiento__gte=datetime.date.today(),titulo__icontains=palabra).order_by('-fecha_publicacion')
-		paginator = Paginator(articulos, NUM_ELEMENTOS_POR_PAGINA)
-		contacts = paginator.page(1)
-		return render_to_response('busquedas.html',{'lista':contacts,'palabra':palabra},context_instance=RequestContext(request))
+		if len(palabra)>3:
+			articulos=Articulo.objects.exclude(status=False).filter(fecha_vencimiento__gte=datetime.date.today(),titulo__icontains=palabra).order_by('-fecha_publicacion')
+			paginator = Paginator(articulos, NUM_ELEMENTOS_POR_PAGINA)
+			contacts = paginator.page(1)
+			return render_to_response('busquedas.html',{'lista':contacts,'palabra':palabra},context_instance=RequestContext(request))
+		else:
+			return render_to_response('busquedas.html',{'palabra':palabra},context_instance=RequestContext(request))
 	except Exception as e:
 		return redirect('/')
 

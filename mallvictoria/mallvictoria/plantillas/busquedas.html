@@ -13,7 +13,9 @@
 		{% include "base/header.html" %}	
 		<section id="wrapper" class="row wrap">
 			<div class="twelve mobile-four mobile-four columns">
-				<p>Busqueda: "{{palabra}}"</p>
+				{%if lista%}
+				<p>Busqueda: <strong>"{{palabra}}"</strong></p>
+				{%endif%}
 				<input type="hidden" id="palabra" value="{{palabra}}">
 				<input type="hidden" id="num_pagina" value="1">
 				<div class="row" id="lista_articulos">
@@ -35,6 +37,10 @@
 					</div>
 					</a>
 				</article>
+				{% empty %}
+				<div class="errorlist msg_busqueda">
+					La palabra de busqueda ({{palabra}}) es demaciado corta intente con una mayor a 3 caracteres.
+				</div>
 				{% endfor %}					
 				</div>				
 			</div>									

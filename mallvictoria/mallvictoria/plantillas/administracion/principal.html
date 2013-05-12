@@ -80,6 +80,15 @@
 </style>
 </head>
 <body>
+<div id="msg_confirmar" class="reveal-modal medium">
+  <input type="hidden" id="id_articulo_terminar">	
+  <h4>Advertencia.</h4>
+  <p class="lead">El articulo se borrara de las publicaciones de mallvictoria.com</p>
+  <div class="right">
+  	<button class="small button btnCerrarPub btn_locker" id="btn_confirmar">Confirmar</button>  	
+  </div>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
 
 {% include "base/frmregistro.html" %}	
 
@@ -117,6 +126,12 @@
 	$.post("/articulo_locker",{'csrfmiddlewaretoken':csrftoken,'idusuario':localStorage.getItem('id')},function(data){
 		$("#lockers").html(data);
 	}); 	
+	$("#btn_confirmar").click(function(){
+		console.log($("#btn_confirmar").val());
+		$.post("/termina_publicacion",{csrfmiddlewaretoken:csrftoken,idarticulo:$("#id_articulo_terminar").val()},function(){
+			window.location='/administracion/';
+		}); 	
+	});
 </script>
 </body>
 </html>

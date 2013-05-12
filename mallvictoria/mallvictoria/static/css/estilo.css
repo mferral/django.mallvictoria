@@ -426,6 +426,11 @@ article .articulo .descripcion .precio-detalle sup{
 	}
 
 	/* Fin Lockers */
+.msg_busqueda{
+	margin:10px 15px 200px 15px;
+	font-size:16px;	
+}
+
 @media screen and (max-width: 980px){
 	article .articulo img{
 		height: 180px;
