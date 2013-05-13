@@ -362,6 +362,7 @@
             // Yes, were executing 'fade'.
             // Okay, let's set the modal properties.
             //
+            //cssOpts.open.top = $doc.scrollTop() + topMeasure;
             cssOpts.open.top = $doc.scrollTop() + topMeasure;
             //
             // Flip the opacity to 0.

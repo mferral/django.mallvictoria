@@ -29,7 +29,7 @@
 				Ahora pudes <a href="#" id="modal">acceder</a> con tu cuenta y publicar.
 			</div>	
 		{%else%}
-		<h1>Registro de Usuarios</h1>																	
+		<h4>Registro de Usuarios</h4>																	
 		<form class="custom" action="" method="post">{% csrf_token %}
 			<fieldset>	
 				<label for="nombre" {%if formulario.errors.nombre%}class='error'{%endif%}><strong>Nombre de Contacto, Empresa o Negocio:</strong></label>
@@ -41,11 +41,11 @@
 				<label for="password" {%if formulario.errors.password%}class='error'{%endif%}><strong>Constrase&ntilde;a:</strong></label>
 				{{formulario.password}}	
 				{{formulario.errors.password}}	
-				<label for="direccion">Direccion:</label>
+				<label for="direccion">Direcci&oacute;n:</label>
 				{{formulario.direccion}}
 				<label for="telefono">Telefono:</label>
 				{{formulario.telefono}}				
-				<label for="sitioweb">Pagina Personal:</label>
+				<label for="sitioweb">P&aacute;gina Personal:</label>
 				{{formulario.sitioweb}}			
 				<div class="row">
 					<div class="six columns">

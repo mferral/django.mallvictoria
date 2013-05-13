@@ -70,14 +70,14 @@ $("#button-bar").click(function(){
 	$("#msgLogin").html("");
 	$("#m_correo").val("");
 	$("#m_password").val("");
-	$("#registro").reveal({"opened":function(){$("#m_correo").focus();}});
+	$("#registro").reveal({"animation":"fade","opened":function(){$("#m_correo").focus();}});
 });
 
 $("#modal").click(function(){
     $("#msgLogin").html("");
     $("#m_correo").val("");
     $("#m_password").val("");
-    $("#registro").reveal({"opened":function(){$("#m_correo").focus();}});
+    $("#registro").reveal({"animation":"fade","opened":function(){$("#m_correo").focus();}});
 });
 
 function cerrarSession(){
