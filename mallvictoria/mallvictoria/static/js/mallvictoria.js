@@ -99,6 +99,13 @@ $('#frmLogin').submit(function() {
 }); 
 /* Fin Funciones de Login */
 
+$("#id_estado").change(function(){
+    //$("#id_estado option:[value=" + $(this).val()+"]").attr("selected", "selected"); 
+    $.post("ciudades",{idestado:$(this).val(),csrfmiddlewaretoken:getCookie('csrftoken')},function(data){
+        $("#id_ciudad").html(data);
+    });
+});
+
 /* Funcione Volver al Top */
 $("#regresar_top").click(function(){volver_top();});
 

@@ -24,6 +24,7 @@ urlpatterns = patterns('',
     url(r'^perfil$', 'principal.views.frmusuarioedit'),
     url(r'^articulo_locker$', 'principal.views.busca_articulos_usuario'),
     url(r'^termina_publicacion$', 'principal.views.termina_publicacion'),
+    url(r'^ciudades$', 'principal.views.ciudades'),
     
     # url(r'^mallvictoria/', include('mallvictoria.foo.urls')),
 

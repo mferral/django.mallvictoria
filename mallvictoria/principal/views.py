@@ -1,5 +1,5 @@
 # Create your views here.
-from principal.models import Categoria, Usuario, Articulo, Tipo, ArticuloUsuario, Visita
+from principal.models import Categoria, Usuario, Articulo, Tipo, ArticuloUsuario, Visita, Ciudad
 from principal.forms import ArticuloForm, ArticuloFormEdit, UsuarioForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
@@ -27,6 +27,8 @@ def login(request):
 	try:
 		u=Usuario.objects.get(correo=request.POST['m_correo'])
 		if u.password == request.POST['m_password']:
+			request.session['nombre']=u.nombre
+			request.session['idusuario']=u.id
 			return HttpResponse('{"nombre":"'+u.nombre+'","id":"'+ str(u.id) +'","correo":"'+u.correo+'","password":"'+u.password+'"}')
 		else:
 			return HttpResponse('0');	
@@ -100,7 +102,8 @@ def administracion(request):
 	return render_to_response('administracion/principal.html',context_instance=RequestContext(request))
 
 def busca_articulos_usuario(request):
-	idusuario=request.POST['idusuario']
+	#idusuario=request.POST['idusuario']
+	idusuario=request.session['idusuario']
 	#articulos_usuario=ArticuloUsuario.objects.exclude(articulo__status=False).filter(usuario__id=idusuario).filter(articulo__fecha_publicacion__range=(now_,quincedias))
 	articulos_usuario=ArticuloUsuario.objects.exclude(articulo__status=False).filter(articulo__fecha_vencimiento__gte=datetime.date.today(),usuario__id=idusuario)
 	lista=range(3)
@@ -154,7 +157,7 @@ def frmarticulosedit(request):
 	return render_to_response('administracion/editlocker.html',{'imagen':articulo.imagen.thumbnail.url,'idlocker':idlocker,'formulario':formulario},context_instance=RequestContext(request))
 
 def frmusuarioedit(request):
-	idusuario=request.GET['idusuario']
+	idusuario=request.session['idusuario']
 	usuario=get_object_or_404(Usuario,pk=idusuario)
 	if request.POST:
 		formulario=UsuarioForm(request.POST,instance=usuario)
@@ -164,7 +167,13 @@ def frmusuarioedit(request):
 	else:
 		formulario=UsuarioForm(instance=usuario)
 	return render_to_response('administracion/perfil.html',{'formulario':formulario},context_instance=RequestContext(request))
-	
+
+def ciudades(request):
+	idestado=request.POST['idestado']
+	usuario=Usuario.objects.get(pk=request.session['idusuario'])
+	ciudades=Ciudad.objects.filter(estado__id=idestado)
+	return render_to_response('administracion/ciudades.html',{'ciudades':ciudades,'select':usuario.ciudad.id})
+
 def termina_publicacion(request):
 	if request.method== 'POST':
 		articulo=Articulo.objects.get(pk=request.POST['idarticulo'])

@@ -18,12 +18,28 @@
 
 		<section id="wrapper" class="row wrap">
 		<div class="twelve mobile-four columns">
-			<h1>Perfil</h1>
-			<div>{{formulario.errors}}</div>																			
+			<h1>Perfil</h1>																	
 		<form class="custom" action="" method="post">{% csrf_token %}
-			<fieldset>					
-				{{formulario.estado}}
-				{{formulario.ciudad}}
+			<fieldset>		
+				<label for="nombre" {%if formulario.errors.nombre%}class='error'{%endif%}>Nombre de Contacto, Empresa o Negocio:</label>{{formulario.nombre}}
+				{{formulario.errors.nombre}}
+				<label for="direccion">Direccion:</label>
+				{{formulario.direccion}}
+				<label for="telefono">Telefono:</label>
+				{{formulario.telefono}}				
+				<label for="sitioweb">Pagina Personal:</label>
+				{{formulario.sitioweb}}			
+				<div class="row">
+					<div class="six columns">
+						<label for="estado"></label>
+						{{formulario.estado}}
+					</div>
+					<div class="six columns">
+						<label for="ciudad">
+						<select name="ciudad" id="id_ciudad"></select>
+						</label>
+					</div>
+				</div>
 
 			</fieldset>						
 			<input type="submit" class="button success" value="Guardar">
@@ -40,5 +56,10 @@
 
 <!-- Scripts -->
 <script src="{{STATIC_URL}}js/mallvictoria.js"></script>
+<script>
+    $.post("ciudades",{idestado:$("#id_estado option:selected").val(),csrfmiddlewaretoken:getCookie('csrftoken')},function(data){
+        $("#id_ciudad").html(data);
+    });    	
+</script>
 </body>
 </html>

@@ -123,7 +123,7 @@
 <!-- Scripts -->
 <script src="{{STATIC_URL}}js/mallvictoria.js"></script>
 <script>
-	$.post("/articulo_locker",{'csrfmiddlewaretoken':csrftoken,'idusuario':localStorage.getItem('id')},function(data){
+	$.post("/articulo_locker",{'csrfmiddlewaretoken':csrftoken},function(data){
 		$("#lockers").html(data);
 	}); 	
 	$("#btn_confirmar").click(function(){
