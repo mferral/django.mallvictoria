@@ -1,0 +1,29 @@
+<form class="custom" action="" method="post">{% csrf_token %}
+	<fieldset>		
+		<label for="nombre" {%if formulario.errors.nombre%}class='error'{%endif%}>Nombre de Contacto, Empresa o Negocio:</label>
+		{{formulario.nombre}}
+		{{formulario.errors.nombre}}
+		<label for="nombre" {%if formulario.errors.correo%}class='error'{%endif%}>Correo:</label>
+		{{formulario.correo}}
+		<label for="password" {%if formulario.errors.password%}class='error'{%endif%}>Constrase&ntilde;a:</label>
+		{{formulario.password}}				
+		<div>
+			<div class="six columns">
+			<label for="estado">Estado:</label>
+			{{formulario.estado}}
+		</div>
+		<div class="six columns">
+			<label for="ciudad">Ciudad:</label>
+			<select name="ciudad" id="id_ciudad"></select>
+		</div>
+		</div>
+	</fieldset>						
+	<input type="submit" class="button success" value="Registrar">
+</form>	
+<script>
+$("#id_estado").change(function(){
+    $.post("ciudades",{idestado:$(this).val(),csrfmiddlewaretoken:getCookie('csrftoken')},function(data){
+        $("#id_ciudad").html(data);
+    });
+});	
+</script>

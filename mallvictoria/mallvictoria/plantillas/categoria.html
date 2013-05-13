@@ -34,6 +34,10 @@
 					</div>
 					</a>
 				</article>
+				{% empty %}
+				<div class="errorlist msg_busqueda">
+					No existen registros en esta categoria.
+				</div>				
 				{% endfor %}					
 				</div>				
 			</div>									

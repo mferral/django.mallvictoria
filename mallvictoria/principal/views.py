@@ -19,6 +19,10 @@ def home(request):
 def ayuda(request):
 	return render_to_response('administracion/ayuda.html',context_instance=RequestContext(request))
 
+def cerrar(request):
+	request.session.clear()
+	return HttpResponseRedirect('/')
+
 def lista_categorias(request):
 	categorias=Categoria.objects.all()
 	return render_to_response('base/categorias.html',{'lista':categorias})
@@ -99,12 +103,14 @@ def articulo_detalle(request):
 	return render_to_response('detalle.html',{'articulo':articulo,'tweet':tweet,'articulos_relacionados':articulos_relacionados},context_instance=RequestContext(request))
 
 def administracion(request):
-	return render_to_response('administracion/principal.html',context_instance=RequestContext(request))
+	try:
+		request.session['idusuario']
+		return render_to_response('administracion/principal.html',context_instance=RequestContext(request))
+	except KeyError:
+		return HttpResponseRedirect('/')
 
 def busca_articulos_usuario(request):
-	#idusuario=request.POST['idusuario']
 	idusuario=request.session['idusuario']
-	#articulos_usuario=ArticuloUsuario.objects.exclude(articulo__status=False).filter(usuario__id=idusuario).filter(articulo__fecha_publicacion__range=(now_,quincedias))
 	articulos_usuario=ArticuloUsuario.objects.exclude(articulo__status=False).filter(articulo__fecha_vencimiento__gte=datetime.date.today(),usuario__id=idusuario)
 	lista=range(3)
 	for count in articulos_usuario:
@@ -123,56 +129,83 @@ def locker(request):
 	return render_to_response('administracion/locker.html',{'idlocker':idlocker,'tipos':tipos,'categorias':categorias},context_instance=RequestContext(request))
 
 def frmarticulos(request):
-	idlocker=request.GET['id']
-	if request.method == 'POST':
-		formulario = ArticuloForm(request.POST, request.FILES)
-		if formulario.is_valid():
-			#f=formulario.save(commit=False)
-			#f.fecha_publicacion=f.fecha_publicacion+15
-			#f.save()
-			f=formulario.save()
-			f.fecha_publicacion=datetime.datetime.now()
-			f.fecha_vencimiento=datetime.timedelta(days=DIAS_PUBLICACION)+datetime.datetime.now()
-			f.save()
-			u=Usuario.objects.get(pk=request.POST['usuario'])
-			a=Articulo.objects.get(pk=f.id)
-			idloc=eval(idlocker)-1
-			ArticuloUsuario.objects.create(usuario=u,articulo=a,orden=idloc)
-			return HttpResponseRedirect('/administracion/')
-	else:
-		formulario=ArticuloForm()	
-	return render_to_response('administracion/locker.html',{'idlocker':idlocker,'formulario':formulario},context_instance=RequestContext(request))
+	try:
+		request.session['idusuario']	
+		idlocker=request.GET['id']
+		if request.method == 'POST':
+			formulario = ArticuloForm(request.POST, request.FILES)
+			if formulario.is_valid():
+				#f=formulario.save(commit=False)
+				#f.fecha_publicacion=f.fecha_publicacion+15
+				#f.save()
+				f=formulario.save()
+				f.fecha_publicacion=datetime.datetime.now()
+				f.fecha_vencimiento=datetime.timedelta(days=DIAS_PUBLICACION)+datetime.datetime.now()
+				f.save()
+				u=Usuario.objects.get(pk=request.POST['usuario'])
+				a=Articulo.objects.get(pk=f.id)
+				idloc=eval(idlocker)-1
+				ArticuloUsuario.objects.create(usuario=u,articulo=a,orden=idloc)
+				return HttpResponseRedirect('/administracion/')
+		else:
+			formulario=ArticuloForm()	
+		return render_to_response('administracion/locker.html',{'idlocker':idlocker,'formulario':formulario},context_instance=RequestContext(request))
+	except KeyError:
+		return HttpResponseRedirect('/')
 
 def frmarticulosedit(request):
-	idlocker=request.GET['id']
-	idarticulo=request.GET['idarticulo']
-	articulo=get_object_or_404(Articulo,pk=idarticulo)
-	if request.POST:
-		formulario=ArticuloFormEdit(request.POST,instance=articulo)
-		if formulario.is_valid():
-			formulario.save()
-			return HttpResponseRedirect('/administracion/')
-	else:
-		formulario=ArticuloFormEdit(instance=articulo)
-	return render_to_response('administracion/editlocker.html',{'imagen':articulo.imagen.thumbnail.url,'idlocker':idlocker,'formulario':formulario},context_instance=RequestContext(request))
+	try:
+		request.session['idusuario']		
+		idlocker=request.GET['id']
+		idarticulo=request.GET['idarticulo']
+		articulo=get_object_or_404(Articulo,pk=idarticulo)
+		if request.POST:
+			formulario=ArticuloFormEdit(request.POST,instance=articulo)
+			if formulario.is_valid():
+				formulario.save()
+				return HttpResponseRedirect('/administracion/')
+		else:
+			formulario=ArticuloFormEdit(instance=articulo)
+		return render_to_response('administracion/editlocker.html',{'imagen':articulo.imagen.thumbnail.url,'idlocker':idlocker,'formulario':formulario},context_instance=RequestContext(request))
+	except KeyError:
+		return HttpResponseRedirect('/')
 
 def frmusuarioedit(request):
-	idusuario=request.session['idusuario']
-	usuario=get_object_or_404(Usuario,pk=idusuario)
+	try:
+		request.session['idusuario']
+		idusuario=request.session['idusuario']
+		usuario=get_object_or_404(Usuario,pk=idusuario)
+		if request.POST:
+			formulario=UsuarioForm(request.POST,instance=usuario)
+			if formulario.is_valid():
+				formulario.save()
+				return HttpResponseRedirect('/')
+		else:
+			formulario=UsuarioForm(instance=usuario)
+		return render_to_response('administracion/perfil.html',{'formulario':formulario},context_instance=RequestContext(request))
+	except KeyError:
+		return HttpResponseRedirect('/')
+
+def registro(request):
+	registro=0
 	if request.POST:
-		formulario=UsuarioForm(request.POST,instance=usuario)
+		formulario=UsuarioForm(request.POST)
 		if formulario.is_valid():
-			formulario.save()
-			return HttpResponseRedirect('/')
+			f=formulario.save()
+			registro=1
 	else:
-		formulario=UsuarioForm(instance=usuario)
-	return render_to_response('administracion/perfil.html',{'formulario':formulario},context_instance=RequestContext(request))
+		formulario=UsuarioForm()
+	return render_to_response('administracion/registro.html',{'formulario':formulario,'registro':registro},context_instance=RequestContext(request))
 
 def ciudades(request):
 	idestado=request.POST['idestado']
-	usuario=Usuario.objects.get(pk=request.session['idusuario'])
+	try:
+		usuario=Usuario.objects.get(pk=request.session['idusuario'])
+		select=usuario.ciudad.id
+	except KeyError:
+		select=0
 	ciudades=Ciudad.objects.filter(estado__id=idestado)
-	return render_to_response('administracion/ciudades.html',{'ciudades':ciudades,'select':usuario.ciudad.id})
+	return render_to_response('administracion/ciudades.html',{'ciudades':ciudades,'select':select})
 
 def termina_publicacion(request):
 	if request.method== 'POST':

@@ -47,6 +47,13 @@ transform: rotate(-30deg);
 -o-transform: rotate(-30deg); /* Opera */
 -moz-transform: rotate(-30deg); /* Firefox */	
 }
+
+#btn_registro{
+	position: absolute;
+	bottom: -20px;
+	display: none;
+}
+
 #container{
 	margin-top: 35px;
 }

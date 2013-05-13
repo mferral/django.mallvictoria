@@ -7,8 +7,10 @@
 		height: 28px;
 		line-height: 25px;
 	}
-	#id_correo, #id_password{
-		display: none;
+	.acceso{
+		text-align: center;
+		padding-top: 50px;
+		padding-bottom: 150px;
 	}
 </style>
 </head>
@@ -21,13 +23,24 @@
 
 		<section id="wrapper" class="row wrap">
 		<div class="twelve mobile-four columns">
-			<h4>Perfil</h4>																	
+		{% ifequal registro 1 %}	
+			<div class="acceso">
+				<h4>Muchas Gracias por Pegistrarte en mallvictoria.com</h4>
+				Ahora pudes <a href="#" id="modal">acceder</a> con tu cuenta y publicar.
+			</div>	
+		{%else%}
+		<h1>Registro de Usuarios</h1>																	
 		<form class="custom" action="" method="post">{% csrf_token %}
 			<fieldset>	
+				<label for="nombre" {%if formulario.errors.nombre%}class='error'{%endif%}><strong>Nombre de Contacto, Empresa o Negocio:</strong></label>
+				{{formulario.nombre}}
+				{{formulario.errors.nombre}}				
+				<label for="correo" {%if formulario.errors.correo%}class='error'{%endif%}><strong>Correo:</strong></label>
 				{{formulario.correo}}
+				{{formulario.errors.correo}}
+				<label for="password" {%if formulario.errors.password%}class='error'{%endif%}><strong>Constrase&ntilde;a:</strong></label>
 				{{formulario.password}}	
-				<label for="nombre" {%if formulario.errors.nombre%}class='error'{%endif%}><strong>Nombre de Contacto, Empresa o Negocio:</strong></label>{{formulario.nombre}}
-				{{formulario.errors.nombre}}
+				{{formulario.errors.password}}	
 				<label for="direccion">Direccion:</label>
 				{{formulario.direccion}}
 				<label for="telefono">Telefono:</label>
@@ -48,7 +61,8 @@
 
 			</fieldset>						
 			<input type="submit" class="button success" value="Guardar">
-		</form>					
+		</form>	
+		{%endifequal%}				
 		</div>	
 		</section>		
 		

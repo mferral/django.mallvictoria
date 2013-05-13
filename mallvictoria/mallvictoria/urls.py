@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'principal.views.home', name='mallvictoria'),
     url(r'^ayuda$', 'principal.views.ayuda'),
+    url(r'^cerrar$', 'principal.views.cerrar'),
     url(r'^categorias/$', 'principal.views.lista_categorias'),
     url(r'^articulos/$', 'principal.views.lista_articulos'),
     url(r'^articulos_busqueda/$', 'principal.views.paginar_articulos'),
@@ -25,6 +26,7 @@ urlpatterns = patterns('',
     url(r'^articulo_locker$', 'principal.views.busca_articulos_usuario'),
     url(r'^termina_publicacion$', 'principal.views.termina_publicacion'),
     url(r'^ciudades$', 'principal.views.ciudades'),
+    url(r'^registro$', 'principal.views.registro'),
     
     # url(r'^mallvictoria/', include('mallvictoria.foo.urls')),
 

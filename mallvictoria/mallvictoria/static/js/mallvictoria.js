@@ -24,7 +24,7 @@ $(document).ready(function() {
 		if(localStorage.length>0){
 			entrarSession();	
 		}else{
-			cerrarSession()
+			cerrarSession();
 		}	
 	}else{
 		cerrarSession();
@@ -45,9 +45,24 @@ $('#frmBusqueda').submit(function() {
 
 /* Funciones de Login */
 
+$("#m_correo").keypress(function(event) {
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13') {
+        $("#frmLogin").submit();
+    }
+});
+
+$("#m_password").keypress(function(event) {
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13') {
+        $("#frmLogin").submit();
+    }
+});
+
 /* Boton Cerrar Session */
 $("#btnCerrarSession").click(function(){
 	cerrarSession();
+    window.location='/cerrar'
 });
 
 /* Boton Entrar */
@@ -58,15 +73,24 @@ $("#button-bar").click(function(){
 	$("#registro").reveal({"opened":function(){$("#m_correo").focus();}});
 });
 
+$("#modal").click(function(){
+    $("#msgLogin").html("");
+    $("#m_correo").val("");
+    $("#m_password").val("");
+    $("#registro").reveal({"opened":function(){$("#m_correo").focus();}});
+});
+
 function cerrarSession(){
     $("#button-bar").css("display","inline");           
     $("#menu_login").css("display","none");   
+    $("#btn_registro").css("display","inline");
     localStorage.clear();
 }
 
 function entrarSession(){
     $("#button-bar").css("display","none");           
     $("#menu_login").css("display","inline");
+    $("#btn_registro").css("display","none");
     $("#datos_correo").text(localStorage.getItem("correo"));   
 }
 
@@ -84,11 +108,10 @@ $('#frmLogin').submit(function() {
         	if(data!="0"){
 	        	var obj = $.parseJSON(data);
 				localStorage.setItem("correo", obj.correo);    
-				localStorage.setItem("password", obj.password);
-                localStorage.setItem("id", obj.id);  
                 localStorage.setItem("nombre", obj.nombre);      
 				entrarSession();
-	        	$('#registro').trigger('reveal:close');             
+	        	$('#registro').trigger('reveal:close');  
+                window.location='/administracion/'           
 	        }else{
 	        	$("#msgLogin").html('<div class="alert-box alert">Verifique los datos.</div>');
 	        }
@@ -106,6 +129,14 @@ $("#id_estado").change(function(){
     });
 });
 
+/*$("#btn_registro").click(function(){
+    $("#div_registro_usuario").load("registro",function(){
+        $.post("ciudades",{idestado:$("#id_estado option:selected").val(),csrfmiddlewaretoken:getCookie('csrftoken')},function(data){
+            $("#id_ciudad").html(data);
+        });    
+    });
+     $("#registro_usuario").reveal();
+});*/
 /* Funcione Volver al Top */
 $("#regresar_top").click(function(){volver_top();});
 

@@ -1,6 +1,6 @@
 <!-- Formulario de registro -->
 <div id="registro" class="reveal-modal medium">
-  <h3>Bienvenido</h3>
+  <h4>Bienvenido !!!</h4>
   	<fieldset>
   		<form id="frmLogin" action="/login" method="POST">
 			<label for="m_correo">Correo:</label>
@@ -8,9 +8,14 @@
 			<label for="m_password">Contrase&ntilde;a:</label>
 			<input type="password" id="m_password" name="m_password">
 			<input type="hidden" name="csrfmiddlewaretoken">
-			<a href="#" class="button success" id="btnLogin">Entrar</a>	<!--<a href="#">No tengo cuenta y deseo regristarme</a>-->
+			<a href="#" class="button success" id="btnLogin">Entrar</a>	<a href="/registro">No tengo cuenta y deseo regristarme</a>
 		</form>
 	</fieldset>
 	<div id="msgLogin"></div>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="registro_usuario" class="reveal-modal medium">
+ <div id="div_registro_usuario"></div>	
   <a class="close-reveal-modal">&#215;</a>
 </div>

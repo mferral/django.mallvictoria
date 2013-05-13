@@ -29,8 +29,7 @@ class ArticuloFormEdit(forms.ModelForm):
 class UsuarioForm(forms.ModelForm):
     class Meta:
         model = Usuario
-        fields=['nombre','telefono','direccion','sitioweb','estado']
+
     def __init__(self, *args, **kwargs):
         super(UsuarioForm,self).__init__(*args, **kwargs)
-        self.fields['estado'].empty_label = None       
-        #self.fields['ciudad']=forms.ModelChoiceField(queryset=Ciudad.objects.filter(estado=self.instance.estado))
+        self.fields['estado'].empty_label = None            
