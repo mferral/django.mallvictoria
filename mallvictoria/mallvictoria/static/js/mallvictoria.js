@@ -107,6 +107,7 @@ $('#frmLogin').submit(function() {
         success: function(data) { 
         	if(data!="0"){
 	        	var obj = $.parseJSON(data);
+                localStorage.setItem("id", obj.id);
 				localStorage.setItem("correo", obj.correo);    
                 localStorage.setItem("nombre", obj.nombre);      
 				entrarSession();
