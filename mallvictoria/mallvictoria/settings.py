@@ -19,7 +19,7 @@ DATABASES = {
         'NAME': 'mallvictoria',                      # Or path to database file if using sqlite3.
         'USER': 'mallvictoria',                      # Not used with sqlite3.
         'PASSWORD': 'djangomallvictoria',                  # Not used with sqlite3.
-        'HOST': '/tmp/mysql.sock',                   # Set to empty string for localhost. Not used with sqlite3.
+        'HOST': 'localhost',                   # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '3306',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
@@ -64,7 +64,7 @@ STATIC_ROOT = ''
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
+STATIC_URL = 'http://mallvictoria.com'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
