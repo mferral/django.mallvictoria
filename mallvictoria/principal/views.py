@@ -130,7 +130,7 @@ def locker(request):
 
 def frmarticulos(request):
 	try:
-		request.session['idusuario']	
+		idusuario=request.session['idusuario']	
 		idlocker=request.GET['id']
 		if request.method == 'POST':
 			formulario = ArticuloForm(request.POST, request.FILES)
@@ -142,7 +142,7 @@ def frmarticulos(request):
 				f.fecha_publicacion=datetime.datetime.now()
 				f.fecha_vencimiento=datetime.timedelta(days=DIAS_PUBLICACION)+datetime.datetime.now()
 				f.save()
-				u=Usuario.objects.get(pk=request.POST['usuario'])
+				u=Usuario.objects.get(pk=idusuario)
 				a=Articulo.objects.get(pk=f.id)
 				idloc=eval(idlocker)-1
 				ArticuloUsuario.objects.create(usuario=u,articulo=a,orden=idloc)
