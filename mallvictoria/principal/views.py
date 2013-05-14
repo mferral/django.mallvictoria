@@ -9,7 +9,7 @@ import datetime
 from django.utils.timezone import utc
 
 DIAS_PUBLICACION=15 
-NUM_ELEMENTOS_POR_PAGINA=30
+NUM_ELEMENTOS_POR_PAGINA=15
 now_=datetime.date.today()
 quincedias=datetime.timedelta(days=DIAS_PUBLICACION)+now_;
 

@@ -39,7 +39,8 @@
 					No existen registros en esta categoria.
 				</div>				
 				{% endfor %}					
-				</div>				
+				</div>	
+				<div class="spinner"> <img src="{{STATIC_URL}}img/spinner.gif" alt=""> Cargando</div>			
 			</div>									
 		</section>		
 		{% include "base/footer.html" %}	
@@ -52,11 +53,14 @@
 <!-- Scripts -->
 <script src="{{STATIC_URL}}js/mallvictoria.js"></script>
 <script>
+$(".spinner").css("display","none");
 function cargar_lista(){
 	var pagina=parseInt($("#num_pagina").val());
 	var idcategoria=$("#idcategoria").val();
 	pagina=pagina+1;
+	$(".spinner").css("display","block");
 	$.post("articulos_categoria_busqueda/",{csrfmiddlewaretoken:csrftoken,pagina:pagina,idcategoria:idcategoria},function(data){
+		$(".spinner").css("display","none");
 		$("#lista_articulos").append(data);
 	});	
 }	
