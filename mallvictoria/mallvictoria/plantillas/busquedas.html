@@ -75,7 +75,10 @@ function cargar_lista(){
 }	
 $(window).scroll(function(){
 	if ($(window).scrollTop() == $(document).height() - $(window).height()){
-		cargar_lista();
+		var display=$(".spinner").css("display");
+		if(display=='none'){
+			cargar_lista();
+		}
 	}
 }); 
 </script>
