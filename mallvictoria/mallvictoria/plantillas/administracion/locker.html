@@ -15,7 +15,6 @@
 		<section id="wrapper" class="row wrap">
 		<div class="twelve mobile-four columns">
 		<h1>Locker {{idlocker}}</h1>
-		{{formulario.errors}}
 		<form id="frmarticulo" class="custom" enctype="multipart/form-data" action="" method="post">{% csrf_token %}
 			<fieldset>					
 					<input type="hidden" name="usuario" id="id_usuario">
@@ -80,7 +79,7 @@
 	$("#frmarticulo").submit(function(){
 		//$(this).val('Guardando...');
 		$(".msg_guardan").css("display","inline");
-		$(this).attr("disabled","disabled");
+		$("#btnGuarda").attr("disabled","disabled");
 
 	});
 	$("#id_usuario").val(localStorage.getItem("id"))
