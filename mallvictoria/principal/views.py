@@ -114,10 +114,11 @@ def busca_articulos_usuario(request):
 	articulos_usuario=ArticuloUsuario.objects.exclude(articulo__status=False).filter(articulo__fecha_vencimiento__gte=datetime.date.today(),usuario__id=idusuario)
 	lista=range(3)
 	for count in articulos_usuario:
-		#fecha1=datetime.datetime(int(count.articulo.fecha_vencimiento.year),int(count.articulo.fecha_vencimiento.month),int(count.articulo.fecha_vencimiento.day),0,0,0)
-		fecha2=datetime.datetime(int(count.articulo.fecha_publicacion.year),int(count.articulo.fecha_publicacion.month),int(count.articulo.fecha_publicacion.day),0,0,0)
-		fecha1=datetime.timedelta(days=DIAS_PUBLICACION)+fecha2
-		dias=fecha1-fecha2
+		fecha1=datetime.datetime(int(count.articulo.fecha_vencimiento.year),int(count.articulo.fecha_vencimiento.month),int(count.articulo.fecha_vencimiento.day),0,0,0)
+		#fecha2=datetime.datetime(int(count.articulo.fecha_publicacion.year),int(count.articulo.fecha_publicacion.month),int(count.articulo.fecha_publicacion.day),0,0,0)
+	    #fecha1=datetime.timedelta(days=DIAS_PUBLICACION)+fecha2
+		dias=fecha1-datetime.datetime.now()
+		
 		visitas=Visita.objects.filter(articulo=count.articulo).count()
 		lista[count.orden]=[count,dias.days,visitas]
 	return render_to_response('administracion/articulo_locker.html',{'lista':lista},context_instance=RequestContext(request))
