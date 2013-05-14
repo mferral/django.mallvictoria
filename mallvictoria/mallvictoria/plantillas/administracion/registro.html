@@ -25,7 +25,7 @@
 		<div class="twelve mobile-four columns">
 		{% ifequal registro 1 %}	
 			<div class="acceso">
-				<h4>Muchas Gracias por Pegistrarte en mallvictoria.com</h4>
+				<h4>Muchas Gracias por Registrarte en mallvictoria.com</h4>
 				Ahora pudes <a href="#" id="modal">acceder</a> con tu cuenta y publicar.
 			</div>	
 		{%else%}
@@ -38,7 +38,7 @@
 				<label for="correo" {%if formulario.errors.correo%}class='error'{%endif%}><strong>Correo:</strong></label>
 				{{formulario.correo}}
 				{{formulario.errors.correo}}
-				<label for="password" {%if formulario.errors.password%}class='error'{%endif%}><strong>Constrase&ntilde;a:</strong></label>
+				<label for="password" {%if formulario.errors.password%}class='error'{%endif%}><strong>Contrase&ntilde;a:</strong></label>
 				{{formulario.password}}	
 				{{formulario.errors.password}}	
 				<label for="direccion">Direcci&oacute;n:</label>
