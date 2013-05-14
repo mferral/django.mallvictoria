@@ -36,7 +36,13 @@
 							<p>{{articulo.descripcion}}</p>
 							<section id="datos-contacto">
 								<p class="etiqueta">Datos de Contacto;</p>
-								<label><i class="general foundicon-address-book"></i> {{articulo.usuario.nombre}}</label>
+								<label><i class="general foundicon-address-book"></i>
+									{%if articulo.usuario.sitioweb%}
+									<a href="{{articulo.usuario.sitioweb}}" target="_blank" style="vertical-align: top;">{{articulo.usuario.nombre}}</a>
+									{%else%}
+									{{articulo.usuario.nombre}}
+									{%endif%}
+								</label>
 								{% if articulo.usuario.direccion %}
 								<label><i class="general foundicon-location"></i> {{articulo.usuario.direccion}}</label>
 								{% endif %}
