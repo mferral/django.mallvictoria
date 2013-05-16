@@ -75,10 +75,10 @@ function cargar_lista(){
 }	
 var anterior=0;
 $(document).scroll(function(){
-	if ($(document).scrollTop() > $("#spinner").height() ){
+	if ($(document).scrollTop() > $(document).height() - $(window).height() - 1000 ){
 		var display=$(".spinner").css("display");
 		if(display=='none'){
-			if(anterior < $("#spinner").height()){
+			if(anterior < $(document).height() - $(window).height() - 1000 ){
 			cargar_lista();
 			}
 		}		
