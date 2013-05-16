@@ -469,16 +469,40 @@ article .articulo .descripcion .precio-detalle sup{
 
 @media screen and (max-width: 980px){
 	article .articulo img{
-		height: 180px;
+		height: 250px;
 		width: 100%;
 	}	
+	#detalle img {
+	width: 100%;
+	height: 260px;
+	}	
+	#arts-rel article .articulo-relacionado img {
+	height: 100px;
+	width: 176px;
+	}
+	#arts-rel .articulo-relacionado {
+	padding: 10px;
+	margin-top: 20px;
+	height: 180px;
+	position: relative;
+	}
+	article .articulo {
+	padding: 10px;
+	padding-bottom: 20px;
+	height: 380px;
+	position: relative;
+	}
 }
 
 @media all and (orientation: landscape) and (max-width: 980px){
 	article .articulo img{
-		height: 250px;
+		height: 260px;
 		width: 100%;
 	}
+	#detalle img {
+	width: 100%;
+	height: 260px;
+	}	
 	article .articulo{
 		padding: 10px;
 		padding-bottom: 20px;
