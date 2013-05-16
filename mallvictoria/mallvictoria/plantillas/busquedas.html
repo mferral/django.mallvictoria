@@ -75,6 +75,7 @@ function cargar_lista(){
 }	
 var anterior=0;
 $(document).scroll(function(){
+	console.log($("#spinner").height());
 	if ($(document).scrollTop() > $("#spinner").height() ){
 		var display=$(".spinner").css("display");
 		if(display=='none'){
