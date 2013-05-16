@@ -44,11 +44,12 @@ function cargar_lista(){
 }
 var anterior=0;
 $(document).scroll(function(){
-	console.log($("#spinner").height());
-	if ($(document).scrollTop() > $("#spinner").height() ){
+	console.log($(document).scrollTop())
+	console.log($(document).height() - $(window).height() - 50);
+	if ($(document).scrollTop() > $(document).height() - $(window).height() - 50 ){
 		var display=$(".spinner").css("display");
 		if(display=='none'){
-			if(anterior < $("#spinner").height()){
+			if(anterior < $(document).height() - $(window).height() - 50 ){
 			cargar_lista();
 			}
 		}		
