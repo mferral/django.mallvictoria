@@ -40,7 +40,7 @@
 				</div>				
 				{% endfor %}					
 				</div>	
-				<div class="spinner"> <img src="{{STATIC_URL}}img/spinner.gif" alt=""> Cargando</div>			
+				<div id="spinner" class="spinner"> <img src="{{STATIC_URL}}img/spinner.gif" alt=""> Cargando</div>			
 			</div>									
 		</section>		
 		{% include "base/footer.html" %}	
@@ -65,13 +65,22 @@ function cargar_lista(){
 		$("#lista_articulos").append(data);
 	});	
 }	
-$(window).scroll(function(){
-	if ($(window).scrollTop() == $(document).height() - $(window).height()){
+
+var anterior=0;
+$(document).scroll(function(){
+	if ($(document).scrollTop() > $("#spinner").height() ){
+
 		var display=$(".spinner").css("display");
 		if(display=='none'){
+			console.log($(document).scrollTop() + ">anterior" + anterior+"spinner"+$("#spinner").height());
+			console.log(anterior<$("#spinner").height());
+			if(anterior < $("#spinner").height()){
+			//anterior=$(document).scrollTop();
 			cargar_lista();
+			}
 		}		
 	}
+	anterior=$(document).scrollTop();
 }); 
 </script>
 </body>
