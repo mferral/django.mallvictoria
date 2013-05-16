@@ -45,11 +45,11 @@ function cargar_lista(){
 var anterior=0;
 $(document).scroll(function(){
 	console.log($(document).scrollTop())
-	console.log($(document).height() - $(window).height() - 50);
-	if ($(document).scrollTop() > $(document).height() - $(window).height() - 50 ){
+	console.log($(document).height() - $(window).height() - 1000);
+	if ($(document).scrollTop() > $(document).height() - $(window).height() - 1000 ){
 		var display=$(".spinner").css("display");
 		if(display=='none'){
-			if(anterior < $(document).height() - $(window).height() - 50 ){
+			if(anterior < $(document).height() - $(window).height() - 1000 ){
 			cargar_lista();
 			}
 		}		
