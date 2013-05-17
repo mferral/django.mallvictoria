@@ -467,6 +467,49 @@ article .articulo .descripcion .precio-detalle sup{
 	display: inline-block;	
 }
 
+#social_buttons{
+	position: fixed;
+	top: 70px;
+	left: 0px;
+	font-size: 30px; 
+
+}
+
+#social_buttons a{
+	font-size: 30px;
+}
+#social_buttons div{
+		margin-bottom: 0px;
+		padding: 0px;
+		border: 1px rgb(240,240,240) solid;
+	padding: 7px;
+	background-color: rgb(250,250,250);		
+}
+
+.twitter{
+	-webkit-transition: color .5s;
+	-moz-transition: color .5s;
+	-o-transition: color .5s;
+	transition: color .5s;
+	color: rgb(144, 193, 250);	   
+}
+.facebook{
+	-webkit-transition: color .5s;
+	-moz-transition: color .5s;
+	-o-transition: color .5s;
+	transition: color .5s;	
+	color: rgb(133, 160, 216);
+}
+
+.twitter:hover{
+	color:#4099ff;		
+}
+.facebook:hover{
+	color: #3B5998;
+}
+
+
+
 @media screen and (max-width: 980px){
 	article .articulo img{
 		height: 250px;
