@@ -469,21 +469,21 @@ article .articulo .descripcion .precio-detalle sup{
 
 #social_buttons{
 	position: fixed;
-	top: 70px;
-	left: 0px;
+	bottom: 20px;
+	right: 25px;
 	font-size: 30px; 
-
+	z-index: 1000;
 }
 
 #social_buttons a{
 	font-size: 30px;
 }
 #social_buttons div{
-		margin-bottom: 0px;
-		padding: 0px;
-		border: 1px rgb(240,240,240) solid;
-	padding: 7px;
-	background-color: rgb(250,250,250);		
+	/*display: inline-block;*/
+	margin-bottom: 0px;	
+	/*border: 1px rgb(240,240,240) solid;*/
+	padding: 0px;
+	/*background-color: rgb(250,250,250);		*/
 }
 
 .twitter{
@@ -491,14 +491,16 @@ article .articulo .descripcion .precio-detalle sup{
 	-moz-transition: color .5s;
 	-o-transition: color .5s;
 	transition: color .5s;
-	color: rgb(144, 193, 250);	   
+	/*color: rgb(144, 193, 250);	   */
+	color: #ccc;
 }
 .facebook{
 	-webkit-transition: color .5s;
 	-moz-transition: color .5s;
 	-o-transition: color .5s;
 	transition: color .5s;	
-	color: rgb(133, 160, 216);
+	/* color: rgb(133, 160, 216);*/
+	color: #ccc;
 }
 
 .twitter:hover{
