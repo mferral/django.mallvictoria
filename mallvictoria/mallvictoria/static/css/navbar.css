@@ -1,11 +1,11 @@
-.top-bar{
+#mibarra.top-bar{
 	margin: 0px;
 	background: transparent;
 	min-height: 35px;
 	max-height: 35px;
 }
 
-.top-bar ul {
+#mibarra.top-bar ul {
 line-height: 35px;
 height: 35px;
 }
@@ -13,6 +13,13 @@ height: 35px;
 .top-bar ul > li {
 	max-height: 35px;		
 }
+
+#mibarra-mobile.top-bar ul > li a:not(.button) {
+color: rgb(177, 175, 175);	
+height: 45px;
+line-height: 45px;
+}
+
 
 .top-bar ul > li a:not(.button) {
 color: rgb(177, 175, 175);	

@@ -537,7 +537,36 @@ article .articulo .descripcion .precio-detalle sup{
 	height: 380px;
 	position: relative;
 	}
+	#container {
+	margin-top: 0px;
+	}
+
+	#id_direccion, #id_sitioweb, #id_telefono,label[for=telefono],label[for=direccion],label[for=sitioweb]{
+		display: none;
+	}
+	#lockeditar{
+		width: 100%;
+	}
+
+footer{
+	width: 100%;
+	margin: auto;
+}	
+
 }
+
+@media screen and (max-width: 1280px){
+	#container {
+	margin-top: 0px;
+	}
+}
+
+@media screen and (max-width: 1024px){
+	#container {
+	margin-top: 0px;
+	}
+}
+
 
 @media all and (orientation: landscape) and (max-width: 980px){
 	article .articulo img{
@@ -553,5 +582,8 @@ article .articulo .descripcion .precio-detalle sup{
 		padding-bottom: 20px;
 		height: 380px;
 		position: relative;
+	}	
+	#container {
+	margin-top: 0px;
 	}		
 }

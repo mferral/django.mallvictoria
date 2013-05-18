@@ -38,26 +38,23 @@
 							<div class="row">
 							  <div class="twelve columns">
 							    <div class="row collapse">
-							      <div class="two columns">
+							      <div class="two columns mobile-one">
 							        <span style="height: 28px;line-height: 25px;" class="prefix">$</span>
 							      </div>
-							      <div class="ten columns">
+							      <div class="ten columns mobile-three">
 							        {{formulario.costo}}
 							      </div>
 							    </div>
 							</div>
 							</div>
 						</div>
-						<div class="four columns">
+						<div class="four columns mobile-four">
 								<label for="tipo">Tipo:</label>
 								{{formulario.tipo}}														
 						</div>
-						<div class="four columns">
+						<div class="four columns mobile-four">
 							<label for="categoria">Categoria:</label>
-								{{formulario.categoria}}
-										<!--{% for value, text in formulario.categoria.field.choices %}
-											<li>{{text}}</li>
-										{% endfor %}	-->																			
+								{{formulario.categoria}}																
 						</div>
 					</div>	
 					<div class="row"><div class="twelve columns">{{formulario.errors.costo}}</div></div>
@@ -87,6 +84,7 @@
 
 	});
 	$("#id_usuario").val(localStorage.getItem("id"));
+
 </script>
 </body>
 </html>

@@ -10,6 +10,7 @@
 	.btnCerrarPub{
 		margin-top: 30px;
 	}
+	
 </style>
 
 {% for articulo in lista %}
@@ -21,7 +22,7 @@
 			    <!--{{articulo.0.articulo.fecha_publicacion|date:'SHORT_DATE_FORMAT'}}
 				Vencimiento: {{articulo.0.articulo.fecha_vencimiento|date:'SHORT_DATE_FORMAT'}}-->
 				
-				<div class="row">
+				<div class="row hide-for-small show-for-large">
 					<div class="six columns text-right col_der">Visitas:</div>
 					<div class="six columns text-left col_izq">{{articulo.2}}</div>
 					<div class="six columns text-right col_der">Restan:</div>
@@ -33,7 +34,13 @@
 					<div class="six columns text-right col_der">Tipo:</div>
 					<div class="six columns text-left col_izq">{{articulo.0.articulo.tipo.tipo}}</div>
 				</div>
-				<a href="/editlocker?id={{forloop.counter}}&idarticulo={{articulo.0.articulo.id}}" class="round small button btn_locker" idarticulo="{{articulo.0.articulo.id}}">Editar</a>
+				<div id="visitasmobile" class="row hide-for-large show-for-small">
+					<h6>Visitas:{{articulo.2}}</h6>
+					<h6>
+						Restan:{{articulo.1}} dias
+					</h6>
+				</div>
+				<a href="/editlocker?id={{forloop.counter}}&idarticulo={{articulo.0.articulo.id}}" class="round small button btn_locker " id="lockeditar" idarticulo="{{articulo.0.articulo.id}}">Editar</a>
 				<button class="round small button btnCerrarPub btn_locker" idarticulo="{{articulo.0.articulo.id}}">Terminar</button>
 			</div>
 		</article>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+{% include "base/head.html" %} 	
+</head>
+<body>
+{% include "base/navbarmobile.html" %}	
+	<div id="container">
+		<section class="row">
+			<div class="twelve mobile-four columns">
+				<h4>Bienvenido!</h4>	
+				<form id="frmLogin" action="/login" method="POST">
+					<fieldset>
+					<label for="m_correo">Correo:</label>
+					<input type="text" id="m_correo" name="m_correo">
+					<label for="m_password">Contrase&ntilde;a:</label>
+					<input type="password" id="m_password" name="m_password">
+					<input type="hidden" name="csrfmiddlewaretoken">
+					<a href="#" class="button success" id="btnLogin">Entrar</a>	<a href="/registro">
+					</fieldset>
+				</form>				
+			</div>
+		</section>
+		<div class="row">
+			<div class="twelve mobile-four columns">
+				<div class="msgLogin"></div>
+			</div>
+		</div>		
+	</div>
+
+{% include "base/scripts.html" %}
+
+<!-- Scripts -->
+<script src="{{STATIC_URL}}js/mallvictoria.js"></script>
+</body>
+</html>

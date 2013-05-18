@@ -48,16 +48,14 @@
 				<label for="sitioweb">P&aacute;gina Personal:</label>
 				{{formulario.sitioweb}}			
 				<div class="row">
-					<div class="six columns">
-						<label for="estado"></label>
+					<div class="six columns mobile-four">
 						{{formulario.estado}}
 					</div>
-					<div class="six columns">
-						<label for="ciudad">
+					<div class="six columns mobile-four">
 						<select name="ciudad" id="id_ciudad"></select>
-						</label>
 					</div>
 				</div>
+
 
 			</fieldset>						
 			<input type="submit" class="button success" value="Guardar">
@@ -79,6 +77,8 @@
     $.post("ciudades",{idestado:$("#id_estado option:selected").val(),csrfmiddlewaretoken:getCookie('csrftoken')},function(data){
         $("#id_ciudad").html(data);
     });    	
+
+    
 </script>
 </body>
 </html>

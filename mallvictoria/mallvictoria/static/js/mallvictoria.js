@@ -60,21 +60,21 @@ $("#m_password").keypress(function(event) {
 });
 
 /* Boton Cerrar Session */
-$("#btnCerrarSession").click(function(){
+$(".btnCerrarSession").click(function(){
 	cerrarSession();
     window.location='/cerrar'
 });
 
 /* Boton Entrar */
 $("#button-bar").click(function(){
-	$("#msgLogin").html("");
+	$(".msgLogin").html("");
 	$("#m_correo").val("");
 	$("#m_password").val("");
 	$("#registro").reveal({"animation":"fade","opened":function(){$("#m_correo").focus();}});
 });
 
 $("#modal").click(function(){
-    $("#msgLogin").html("");
+    $(".msgLogin").html("");
     $("#m_correo").val("");
     $("#m_password").val("");
     $("#registro").reveal({"animation":"fade","opened":function(){$("#m_correo").focus();}});
@@ -82,16 +82,26 @@ $("#modal").click(function(){
 
 function cerrarSession(){
     $("#button-bar").css("display","inline");           
-    $("#menu_login").css("display","none");   
+    $("#menu_login").css("display","none");  
     $("#btn_registro").css("display","inline");
+    /*mobile*/
+    $("#loginmobile").css("display","inline"); 
+    $("#registratemobile").css("display","inline"); 
+    $("#adminmobile").css("display","none");     
+    $("#cerrarmobile").css("display","none");     
     localStorage.clear();
 }
 
 function entrarSession(){
     $("#button-bar").css("display","none");           
-    $("#menu_login").css("display","inline");
+    $("#menu_login").css("display","inline");    
     $("#btn_registro").css("display","none");
     $("#datos_correo").text(localStorage.getItem("correo"));   
+    /*mobile*/
+    $("#loginmobile").css("display","none");
+    $("#registratemobile").css("display","none");  
+    $("#adminmobile").css("display","inline");     
+    $("#cerrarmobile").css("display","inline");     
 }
 
 $("#btnLogin").click(function() {
@@ -114,7 +124,7 @@ $('#frmLogin').submit(function() {
 	        	$('#registro').trigger('reveal:close');  
                 window.location='/administracion/'           
 	        }else{
-	        	$("#msgLogin").html('<div class="alert-box alert">Verifique los datos.</div>');
+	        	$(".msgLogin").html('<div class="alert-box alert">Verifique los datos.</div>');
 	        }
 
         }

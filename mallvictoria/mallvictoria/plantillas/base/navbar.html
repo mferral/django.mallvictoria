@@ -1,7 +1,9 @@
+{% include "base/navbarmobile.html" %}
+<div class="hide-for-small hide-for-medium">
 <nav id="navegacion" class="fixed contain-to-grid">
 	<div class="row">
 		<div class="twelve mobile-four colums">
-			<nav class="top-bar">
+			<nav id="mibarra" class="top-bar">
 					<ul class="top-bar">
 						<li class="name">
 							<h1><a href="/" id="title-bar">Mall Victoria</a></h1>
@@ -30,7 +32,7 @@
 						    	<li><a href="/administracion/">Mis Art&iacute;culos</a></li>
 						    	<li><a href="/perfil">Mi Perfil</a></li>
 						    	<li><a href="/ayuda">Ayuda</a></li>
-						    	<li><a href="#" id="btnCerrarSession"> <i class="general foundicon-lock"></i> Cerrar</a></li>
+						    	<li><a href="#" class="btnCerrarSession"> <i class="general foundicon-lock"></i> Cerrar</a></li>
 						    </ul>
 						</li>						    
 					</ul>				
@@ -38,6 +40,8 @@
 		</div>
 	</div>
 </nav>
+</div>
+
 <div id="social_buttons" class="hide-for-small">
 	<div>
 		<a href="https://www.facebook.com/mall.victoria.5" target="_blank" class="facebook"><i class="social foundicon-facebook icono"></i></a>

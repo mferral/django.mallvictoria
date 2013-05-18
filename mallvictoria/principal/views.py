@@ -19,6 +19,9 @@ def home(request):
 def ayuda(request):
 	return render_to_response('administracion/ayuda.html',context_instance=RequestContext(request))
 
+def loginmobile(request):
+	return render_to_response('administracion/loginmobile.html',context_instance=RequestContext(request))	
+
 def cerrar(request):
 	request.session.clear()
 	return HttpResponseRedirect('/')

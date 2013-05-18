@@ -27,6 +27,8 @@ urlpatterns = patterns('',
     url(r'^termina_publicacion$', 'principal.views.termina_publicacion'),
     url(r'^ciudades$', 'principal.views.ciudades'),
     url(r'^registro$', 'principal.views.registro'),
+
+    url(r'^loginmobile$', 'principal.views.loginmobile'),
     
     # url(r'^mallvictoria/', include('mallvictoria.foo.urls')),
 
