@@ -10,6 +10,7 @@ from django.utils.timezone import utc
 
 DIAS_PUBLICACION=15 
 NUM_ELEMENTOS_POR_PAGINA=15
+LOCKERS=9
 now_=datetime.date.today()
 quincedias=datetime.timedelta(days=DIAS_PUBLICACION)+now_;
 
@@ -115,7 +116,7 @@ def administracion(request):
 def busca_articulos_usuario(request):
 	idusuario=request.session['idusuario']
 	articulos_usuario=ArticuloUsuario.objects.exclude(articulo__status=False).filter(articulo__fecha_vencimiento__gte=datetime.date.today(),usuario__id=idusuario)
-	lista=range(3)
+	lista=range(LOCKERS)
 	for count in articulos_usuario:
 		fecha1=datetime.datetime(int(count.articulo.fecha_vencimiento.year),int(count.articulo.fecha_vencimiento.month),int(count.articulo.fecha_vencimiento.day),0,0,0)
 		#fecha2=datetime.datetime(int(count.articulo.fecha_publicacion.year),int(count.articulo.fecha_publicacion.month),int(count.articulo.fecha_publicacion.day),0,0,0)
