@@ -25,8 +25,8 @@
 				<div class="row hide-for-small show-for-large">
 					<div class="six columns text-right col_der">Visitas:</div>
 					<div class="six columns text-left col_izq">{{articulo.2}}</div>
-					<div class="six columns text-right col_der">Restan:</div>
-					<div class="six columns text-left col_izq"><strong>{{articulo.1}} dias</strong></div>
+					<!--<div class="six columns text-right col_der">Restan:</div>
+					<div class="six columns text-left col_izq"><strong> dias</strong></div>-->
 					<div class="six columns text-right col_der">Costo:</div>
 					<div class="six columns text-left col_izq">$ {{articulo.0.articulo.costo}}</div>
 					<div class="six columns text-right col_der">Categor&iacute;a:</div>
@@ -35,10 +35,10 @@
 					<div class="six columns text-left col_izq">{{articulo.0.articulo.tipo.tipo}}</div>
 				</div>
 				<div id="visitasmobile" class="row hide-for-large show-for-small">
-					<h6>Visitas:{{articulo.2}}</h6>
-					<h6>
-						Restan:{{articulo.1}} dias
-					</h6>
+					<h6>Visitas:{{articulo.2}}</h6> 
+					<!--<h6>
+						Restan: dias
+					</h6>-->
 				</div>
 				<a href="/editlocker?id={{forloop.counter}}&idarticulo={{articulo.0.articulo.id}}" class="round small button btn_locker " id="lockeditar" idarticulo="{{articulo.0.articulo.id}}">Editar</a>
 				<button class="round small button btnCerrarPub btn_locker" idarticulo="{{articulo.0.articulo.id}}">Terminar</button>

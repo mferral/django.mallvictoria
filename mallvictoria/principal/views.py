@@ -45,8 +45,8 @@ def login(request):
 
 def lista_articulos(request):
 	#articulos=Articulo.objects.filter(fecha_publicacion__range=(now_,quincedias)).order_by('-fecha_publicacion').exclude(status=False)
-	#exclude(articulo__fecha_vencimiento__lte=now_)
-	articulos=Articulo.objects.filter(fecha_vencimiento__gte=datetime.date.today()).order_by('-fecha_publicacion').exclude(status=False)
+	#articulos=Articulo.objects.filter(fecha_vencimiento__gte=datetime.date.today()).order_by('-fecha_publicacion').exclude(status=False)
+	articulos=Articulo.objects.order_by('-fecha_publicacion').exclude(status=False)
 	paginator = Paginator(articulos, NUM_ELEMENTOS_POR_PAGINA)
 	page=request.POST['pagina']
 	if int(page)<=paginator.num_pages:
@@ -59,7 +59,8 @@ def busqueda_articulos(request):
 	try:
 		palabra=request.POST['texto_busqueda']
 		if len(palabra)>3:
-			articulos=Articulo.objects.exclude(status=False).filter(fecha_vencimiento__gte=datetime.date.today(),titulo__icontains=palabra).order_by('-fecha_publicacion')
+			#articulos=Articulo.objects.exclude(status=False).filter(fecha_vencimiento__gte=datetime.date.today(),titulo__icontains=palabra).order_by('-fecha_publicacion')
+			articulos=Articulo.objects.exclude(status=False).filter(titulo__icontains=palabra).order_by('-fecha_publicacion')
 			paginator = Paginator(articulos, NUM_ELEMENTOS_POR_PAGINA)
 			contacts = paginator.page(1)
 			return render_to_response('busquedas.html',{'lista':contacts,'palabra':palabra},context_instance=RequestContext(request))
@@ -71,7 +72,8 @@ def busqueda_articulos(request):
 
 def paginar_articulos(request):
 	palabra=request.POST['palabra']
-	articulos=Articulo.objects.exclude(status=False).filter(fecha_vencimiento__gte=datetime.date.today(),titulo__icontains=palabra).order_by('-fecha_publicacion')
+	#articulos=Articulo.objects.exclude(status=False).filter(fecha_vencimiento__gte=datetime.date.today(),titulo__icontains=palabra).order_by('-fecha_publicacion')
+	articulos=Articulo.objects.exclude(status=False).filter(titulo__icontains=palabra).order_by('-fecha_publicacion')
 	paginator = Paginator(articulos, NUM_ELEMENTOS_POR_PAGINA)
 	page=request.POST['pagina']
 	if int(page)<=paginator.num_pages:
@@ -82,14 +84,16 @@ def paginar_articulos(request):
 
 def lista_articulos_categoria(request):
 	idcategoria=request.GET['idcategoria']
-	articulos=Articulo.objects.exclude(status=False).filter(fecha_vencimiento__gte=datetime.date.today(),categoria__id=idcategoria).order_by('-fecha_publicacion')
+	#articulos=Articulo.objects.exclude(status=False).filter(fecha_vencimiento__gte=datetime.date.today(),categoria__id=idcategoria).order_by('-fecha_publicacion')
+	articulos=Articulo.objects.exclude(status=False).filter(categoria__id=idcategoria).order_by('-fecha_publicacion')
 	paginator = Paginator(articulos, NUM_ELEMENTOS_POR_PAGINA)
 	contacts = paginator.page(1)
 	return render_to_response('categoria.html',{'lista':contacts,'idcategoria':idcategoria},context_instance=RequestContext(request))
 
 def paginar_articulos_categoria(request):
 	idcategoria=request.POST['idcategoria']
-	articulos=Articulo.objects.exclude(status=False).filter(fecha_vencimiento__gte=datetime.date.today(),categoria__id=idcategoria).order_by('-fecha_publicacion')
+	#articulos=Articulo.objects.exclude(status=False).filter(fecha_vencimiento__gte=datetime.date.today(),categoria__id=idcategoria).order_by('-fecha_publicacion')
+	articulos=Articulo.objects.exclude(status=False).filter(categoria__id=idcategoria).order_by('-fecha_publicacion')
 	paginator = Paginator(articulos, NUM_ELEMENTOS_POR_PAGINA)
 	page=request.POST['pagina']
 	if int(page)<=paginator.num_pages:
@@ -115,14 +119,17 @@ def administracion(request):
 
 def busca_articulos_usuario(request):
 	idusuario=request.session['idusuario']
-	articulos_usuario=ArticuloUsuario.objects.exclude(articulo__status=False).filter(articulo__fecha_vencimiento__gte=datetime.date.today(),usuario__id=idusuario)
+	#articulos_usuario=ArticuloUsuario.objects.exclude(articulo__status=False).filter(articulo__fecha_vencimiento__gte=datetime.date.today(),usuario__id=idusuario)
+	articulos_usuario=ArticuloUsuario.objects.exclude(articulo__status=False).filter(usuario__id=idusuario)
 	lista=range(LOCKERS)
 	for count in articulos_usuario:
-		fecha1=datetime.datetime(int(count.articulo.fecha_vencimiento.year),int(count.articulo.fecha_vencimiento.month),int(count.articulo.fecha_vencimiento.day),0,0,0)
 		#fecha2=datetime.datetime(int(count.articulo.fecha_publicacion.year),int(count.articulo.fecha_publicacion.month),int(count.articulo.fecha_publicacion.day),0,0,0)
 	    #fecha1=datetime.timedelta(days=DIAS_PUBLICACION)+fecha2
-		dias=fecha1-datetime.datetime.now()
 		
+		#fecha1=datetime.datetime(int(count.articulo.fecha_vencimiento.year),int(count.articulo.fecha_vencimiento.month),int(count.articulo.fecha_vencimiento.day),0,0,0)
+		#dias=fecha1-datetime.datetime.now()
+		dias=0
+
 		visitas=Visita.objects.filter(articulo=count.articulo).count()
 		lista[count.orden]=[count,dias.days,visitas]
 	return render_to_response('administracion/articulo_locker.html',{'lista':lista},context_instance=RequestContext(request))
