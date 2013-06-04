@@ -131,7 +131,8 @@ def busca_articulos_usuario(request):
 		dias=0
 
 		visitas=Visita.objects.filter(articulo=count.articulo).count()
-		lista[count.orden]=[count,dias.days,visitas]
+		#lista[count.orden]=[count,dias.days,visitas]
+		lista[count.orden]=[count,dias,visitas]
 	return render_to_response('administracion/articulo_locker.html',{'lista':lista},context_instance=RequestContext(request))
 
 def locker(request):
